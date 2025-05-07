@@ -1,0 +1,345 @@
+/* ===== TRANSITIONS ET ANIMATIONS ===== */
+
+/* Animation d'apparition de la page */
+body {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  }
+  
+  body.page-loaded {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Animation de sortie lors de la navigation */
+  body.page-transitioning {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  
+  /* Animation des sections au défilement */
+  .section-card, 
+  .detail-section, 
+  .experience-item, 
+  .education-item, 
+  .project-card,
+  .detail-project,
+  .skill-category,
+  .email-example,
+  .testimonial {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition-delay: 0.1s;
+  }
+  
+  .section-card.visible, 
+  .detail-section.visible, 
+  .experience-item.visible, 
+  .education-item.visible, 
+  .project-card.visible,
+  .detail-project.visible,
+  .skill-category.visible,
+  .email-example.visible,
+  .testimonial.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Animation séquentielle pour les éléments d'une liste */
+  .detail-list li {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .detail-list.visible li:nth-child(1) { transition-delay: 0.1s; }
+  .detail-list.visible li:nth-child(2) { transition-delay: 0.2s; }
+  .detail-list.visible li:nth-child(3) { transition-delay: 0.3s; }
+  .detail-list.visible li:nth-child(4) { transition-delay: 0.4s; }
+  .detail-list.visible li:nth-child(5) { transition-delay: 0.5s; }
+  .detail-list.visible li:nth-child(6) { transition-delay: 0.6s; }
+  
+  .detail-list.visible li {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* Animation des barres de compétences */
+  .skill-bar {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .skill-category.visible .skill-bar:nth-child(1) { transition-delay: 0.1s; }
+  .skill-category.visible .skill-bar:nth-child(2) { transition-delay: 0.2s; }
+  .skill-category.visible .skill-bar:nth-child(3) { transition-delay: 0.3s; }
+  .skill-category.visible .skill-bar:nth-child(4) { transition-delay: 0.4s; }
+  
+  .skill-category.visible .skill-bar {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* Animation des indicateurs de résultats */
+  .result-item, .impact-metric, .key-stat {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .detail-project.visible .result-item:nth-child(1),
+  .impact-metrics.visible .impact-metric:nth-child(1),
+  .key-stats.visible .key-stat:nth-child(1) { 
+    transition-delay: 0.1s; 
+  }
+  
+  .detail-project.visible .result-item:nth-child(2),
+  .impact-metrics.visible .impact-metric:nth-child(2),
+  .key-stats.visible .key-stat:nth-child(2) { 
+    transition-delay: 0.2s; 
+  }
+  
+  .detail-project.visible .result-item:nth-child(3),
+  .impact-metrics.visible .impact-metric:nth-child(3),
+  .key-stats.visible .key-stat:nth-child(3) { 
+    transition-delay: 0.3s; 
+  }
+  
+  .key-stats.visible .key-stat:nth-child(4) { 
+    transition-delay: 0.4s; 
+  }
+  
+  .detail-project.visible .result-item,
+  .impact-metrics.visible .impact-metric,
+  .key-stats.visible .key-stat {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  /* Animation du hover sur les cartes de projets */
+  .project-card,
+  .detail-project,
+  .impact-metric,
+  .tool-item,
+  .key-stat,
+  .email-example {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.3s ease-out;
+  }
+  
+  .project-card:hover,
+  .detail-project:hover,
+  .impact-metric:hover,
+  .tool-item:hover,
+  .key-stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  }
+  
+  /* Animation de la barre de recherche */
+  .search-wrapper {
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .search-wrapper.search-focus {
+    box-shadow: 0 1px 10px rgba(32,33,36,0.45);
+  }
+  
+  .search-bar {
+    transition: border-color 0.3s;
+  }
+  
+  /* Animation des témoignages */
+  .testimonial {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+  
+  .testimonial:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+  
+  /* Animation du menu de navigation */
+  .detail-tabs li {
+    position: relative;
+  }
+  
+  .detail-tabs li::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background-color: #1a73e8;
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+  
+  .detail-tabs li:hover::after {
+    width: 100%;
+    left: 0;
+  }
+  
+  .detail-tabs li.active::after {
+    width: 100%;
+    left: 0;
+  }
+  
+  /* Animation des boutons */
+  .google-btn {
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  }
+  
+  .google-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+  }
+  
+  .google-btn:hover {
+    transform: scale(1.02);
+  }
+  
+  .google-btn:active::after {
+    animation: ripple 0.6s ease-out;
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(0, 0);
+      opacity: 0.5;
+    }
+    20% {
+      transform: scale(25, 25);
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(40, 40);
+    }
+  }
+  
+  /* Animation du header lors du défilement */
+  .detail-header {
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  
+  .header-scrolled {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+  }
+  
+  /* Animation des badges de compétences */
+  .detail-tag, .sidebar-tag, .skill-item {
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  }
+  
+  .detail-tag:hover, .sidebar-tag:hover, .skill-item:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Animation d'apparition initiale du logo CVgle */
+  @keyframes logoAnimation {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  .logo-google {
+    animation: logoAnimation 1s ease-out forwards;
+  }
+  
+  /* Animation de la page d'accueil */
+  .center-container {
+    animation: fadeInUpCenter 1.2s forwards;
+  }
+  
+  @keyframes fadeInUpCenter {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Animation de la barre de recherche sur la page d'accueil */
+  .search-input {
+    animation: expandSearch 0.5s ease-out 0.8s both;
+  }
+  
+  @keyframes expandSearch {
+    from {
+      transform: scaleX(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Animation des boutons sur la page d'accueil */
+  .buttons {
+    animation: fadeInButtons 0.5s ease-out 1.2s both;
+  }
+  
+  @keyframes fadeInButtons {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Animation de soulignement des liens */
+  .footer-left a, 
+  .footer-right a, 
+  .sidebar-card a:not(.sidebar-link), 
+  .detail-breadcrumb a {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .footer-left a::after, 
+  .footer-right a::after, 
+  .sidebar-card a:not(.sidebar-link)::after, 
+  .detail-breadcrumb a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .footer-left a:hover::after, 
+  .footer-right a:hover::after, 
+  .sidebar-card a:not(.sidebar-link):hover::after, 
+  .detail-breadcrumb a:hover::after {
+    width: 100%;
+  }

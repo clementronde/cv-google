@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clément Rondepierre - CV</title>
+  <link rel="stylesheet" href="cv.css">
+  <link rel="stylesheet" href="transitions.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- Meta tags pour le référencement -->
+  <meta name="description" content="CV complet de Clément Rondepierre - Alternant en marketing digital">
+  <meta name="keywords" content="CV, alternance, marketing digital, Clément Rondepierre, SEO, webmarketing, Google Analytics, UX">
+  <!-- Préchargement des pages d'expérience pour une navigation plus rapide -->
+  <link rel="preload" href="pages/freelance.html" as="document">
+  <link rel="preload" href="pages/galileo.html" as="document">
+  <link rel="preload" href="pages/telethon.html" as="document">
+  <!-- Open Graph tags pour les réseaux sociaux -->
+  <meta property="og:title" content="Clément Rondepierre - CV Marketing Digital">
+  <meta property="og:description" content="CV innovant au format Google pour ma recherche d'alternance en marketing digital.">
+  <meta property="og:image" content="./assets/Images/og-preview.jpg">
+  <meta property="og:url" content="https://clement-rondepierre.fr/cv.html">
+  <meta property="og:type" content="website">
+</head>
+<body>
+  <!-- Barre de navigation Google -->
+  <header class="cv-header">
+    <div class="header-container">
+      <a href="index.html" class="logo-link">
+        <h1 class="logo-google"><span style="color: rgb(66, 133, 244);">C</span><span style="color: rgb(234, 67, 53);">v</span><span style="color: rgb(251, 188, 5);">g</span><span style="color: rgb(52, 168, 83);">l</span><span style="color: rgb(66, 133, 244);">e</span></h1>
+      </a>
+      <div class="search-wrapper">
+        <input type="text" class="search-bar" id="search-input" value="Clément Rondepierre CV" />
+        <div class="search-icons">
+          <img src="https://www.gstatic.com/images/icons/material/system/1x/mic_black_24dp.png" alt="mic">
+          <img src="https://www.gstatic.com/images/icons/material/system/1x/search_black_24dp.png" alt="search" id="search-button">
+        </div>
+      </div>
+      <div class="profile-icon"></div>
+    </div>
+    <nav class="cv-tabs">
+      <ul>
+        <li><a href="#parcours" class="scroll-link">Parcours</a></li>
+        <li><a href="#competences" class="scroll-link">Compétences</a></li>
+        <li><a href="#formations" class="scroll-link">Formations</a></li>
+        <li><a href="#projets" class="scroll-link">Projets</a></li>
+        <li><a href="#contact" class="scroll-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="cv-container">
+    <!-- Section d'en-tête du profil -->
+    <section class="profile-section section-card" id="profile">
+      <div class="profile-grid">
+        <div class="profile-photo">
+          <img src="./assets/Images/Photo 1.png" alt="Clément Rondepierre">
+        </div>
+        <div class="profile-info">
+          <h1>Clément RONDEPIERRE</h1>
+          <h2>Alternant Marketing Digital | Data Customer eXperience</h2>
+          <div class="rating">
+            <span class="stars">★★★★★</span>
+            <span>5,0 (3 avis)</span>
+          </div>
+          <p class="profile-intro">
+            « Si vous êtes tombés ici, c'est que mon SEO est optimal. Je suis à la recherche 
+            d'une alternance dans le domaine du marketing digital. »
+          </p>
+          <div class="profile-badges">
+            <div class="badge">
+              <img src="./assets/Images/google-analytics.png" alt="Google Analytics 4">
+              <span>Google Analytics 4</span>
+            </div>
+            <div class="badge">
+              <img src="./assets/Images/google-ads.png" alt="Google Ads">
+              <span>Google Ads 2024</span>
+            </div>
+            <div class="badge">
+              <img src="./assets/Images/seo.png" alt="SEO">
+              <span>SEO/SEM</span>
+            </div>
+          </div>
+          <div class="profile-availability">
+            <div class="availability-badge">Disponible à partir de septembre 2025</div>
+          </div>
+        </div>
+        <div class="profile-contact">
+          <h3>Contact</h3>
+          <ul>
+            <li><strong>Âge :</strong> 23 ans</li>
+            <li><strong>Téléphone :</strong> <a href="tel:+33766489982">07 66 48 99 82</a></li>
+            <li><strong>Email :</strong> <a href="mailto:clem.rondepierre.cr@gmail.com">clem.rondepierre.cr@gmail.com</a></li>
+            <li><strong>Adresse :</strong> 18 rue d'Aguesseau, 92100 Boulogne-Billancourt</li>
+            <li><strong>LinkedIn :</strong> <a href="https://linkedin.com/in/clement-rondepierre" target="_blank">Clément RONDEPIERRE</a></li>
+          </ul>
+          <div class="qr-code">
+            <img src="./assets/Images/qr-code.png" alt="QR Code">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Parcours professionnel -->
+    <section class="experience-section section-card" id="parcours">
+      <h2 class="section-title"><img src="https://www.gstatic.com/images/icons/material/system/1x/work_black_24dp.png" alt="work icon"> Parcours Professionnel</h2>
+      
+      <div class="experience-item">
+        <div class="experience-header">
+          <img src="./assets/Images/Freelance.png" alt="Freelance" class="company-logo">
+          <div class="experience-title">
+            <h3><a href="pages/freelance.html">Freelance</a></h3>
+            <p class="experience-period">2025</p>
+          </div>
+        </div>
+        <div class="experience-content">
+          <p>Réalisation de site wordpress, optimisation et améliorations de site existant en performance et SEO. Mise en place de campagnes meta ads, stratégie social média.</p>
+          <a href="pages/freelance.html" class="more-details-link">Voir les détails <span>&rarr;</span></a>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="experience-header">
+          <img src="./assets/Images/galileo.png" alt="Galileo Global Education" class="company-logo">
+          <div class="experience-title">
+            <h3><a href="pages/galileo.html">Alternant Webmarketeur digital - Galileo Global Education</a></h3>
+            <p class="experience-period">Septembre 2024 - Décembre 2024</p>
+          </div>
+        </div>
+        <div class="experience-content">
+          <p>Optimisations, créations et améliorations du netlinking des articles de blog pour améliorer le SEO du site. Réalisations d'AB Testing UX pour optimiser le parcours client. Rapport Google Analytics et Google Search Console et propositions d'améliorations.</p>
+          <a href="pages/galileo.html" class="more-details-link">Voir les détails <span>&rarr;</span></a>
+        </div>
+      </div>
+
+      <div class="experience-item">
+        <div class="experience-header">
+          <img src="./assets/Images/telethon.png" alt="AFM Téléthon" class="company-logo">
+          <div class="experience-title">
+            <h3><a href="pages/telethon.html">Alternant Intégrateur / Routeur emailing - AFM Téléthon</a></h3>
+            <p class="experience-period">2022 - 2024</p>
+          </div>
+        </div>
+        <div class="experience-content">
+          <p>Intégration HTML CSS et routage de l'ensemble des emails de fidélisation de l'AFM Téléthon, suivi de campagne à la performance. Mise en place de triggers, landing page, personnalisation régionalisée d'emailing. Analyse et études des différentes campagnes.</p>
+          <a href="pages/telethon.html" class="more-details-link">Voir les détails <span>&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section class="skills-section section-card" id="competences">
+      <h2 class="section-title"><img src="https://www.gstatic.com/images/icons/material/system/1x/build_black_24dp.png" alt="skills icon"> Compétences</h2>
+      
+      <div class="skills-category">
+        <h3>Web-marketing</h3>
+        <div class="skills-items">
+          <span class="skill-item">Google Analytics</span>
+          <span class="skill-item">Brevo</span>
+          <span class="skill-item">Meta</span>
+          <span class="skill-item">Excel</span>
+          <span class="skill-item">Looker studio</span>
+          <span class="skill-item">Google Ads</span>
+          <span class="skill-item">SEO</span>
+          <span class="skill-item">Emailing</span>
+          <span class="skill-item">Content Marketing</span>
+        </div>
+      </div>
+
+      <div class="skills-category">
+        <h3>Design</h3>
+        <div class="skills-items">
+          <span class="skill-item">Photoshop</span>
+          <span class="skill-item">Figma</span>
+          <span class="skill-item">Première Pro</span>
+          <span class="skill-item">InDesign</span>
+          <span class="skill-item">Illustrator</span>
+          <span class="skill-item">UI/UX</span>
+        </div>
+      </div>
+
+      <div class="skills-category">
+        <h3>Développement</h3>
+        <div class="skills-items">
+          <span class="skill-item">HTML/CSS</span>
+          <span class="skill-item">JavaScript</span>
+          <span class="skill-item">WordPress</span>
+          <span class="skill-item">Responsive Design</span>
+        </div>
+      </div>
+
+      <div class="skills-category">
+        <h3>Communication</h3>
+        <div class="skills-items">
+          <span class="skill-item">Gestion de projet</span>
+          <span class="skill-item">Social média</span>
+          <span class="skill-item">Stratégie marketing</span>
+          <span class="skill-item">Humour</span>
+          <span class="skill-item">Rédaction</span>
+          <span class="skill-item">Travail d'équipe</span>
+        </div>
+      </div>
+
+      <div class="certifications-section">
+        <h3>Certifications</h3>
+        <div class="certifications-grid">
+          <div class="certification-card">
+            <img src="./assets/Images/google-analytics.png" alt="Google Analytics 4" class="certification-logo">
+            <div class="certification-content">
+              <h4>Google Analytics 4</h4>
+              <p>Certification Google 2024</p>
+              <span class="certification-label">Validé</span>
+            </div>
+          </div>
+          <div class="certification-card">
+            <img src="./assets/Images/google-ads.png" alt="Google Ads" class="certification-logo">
+            <div class="certification-content">
+              <h4>Google Ads</h4>
+              <p>Certification Google 2024</p>
+              <span class="certification-label">Validé</span>
+            </div>
+          </div>
+          <div class="certification-card">
+            <img src="./assets/Images/hubspot.png" alt="HubSpot" class="certification-logo">
+            <div class="certification-content">
+              <h4>HubSpot Email Marketing</h4>
+              <p>Certification HubSpot 2023</p>
+              <span class="certification-label">Validé</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Formation -->
+    <section class="education-section section-card" id="formations">
+      <h2 class="section-title"><img src="https://www.gstatic.com/images/icons/material/system/1x/school_black_24dp.png" alt="education icon"> Formations</h2>
+      
+      <div class="education-item">
+        <div class="education-header">
+          <img src="./assets/Images/digital-campus.png" alt="Digital Campus" class="school-logo">
+          <div class="education-title">
+            <h3>Master Data Customer eXperience - Digital Campus</h3>
+            <p class="education-period">2024 - 2026</p>
+          </div>
+        </div>
+        <div class="education-content">
+          <p>En deux ans, j'aurai l'occasion d'améliorer mes connaissances en analyse de données, Datavisualisation et marketing digital. J'aurai aussi l'opportunité de développer des compétences en UX, CX et de consolider mes acquis en gestion de projet.</p>
+        </div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-header">
+          <img src="./assets/Images/digital-campus.png" alt="Digital Campus Paris" class="school-logo">
+          <div class="education-title">
+            <h3>Bachelor chef de projet digital - Digital Campus Paris</h3>
+            <p class="education-period">2022 - 2024</p>
+          </div>
+        </div>
+        <div class="education-content">
+          <p>Apprentissage de la conception de dispositifs digitaux dans des objectifs de notoriétés, de promotions et de développement d'une marque. En trois ans j'ai pu me former aux techniques du marketing et du web-marketing, du design et de la vidéo.</p>
+        </div>
+      </div>
+
+      <div class="education-item">
+        <div class="education-header">
+          <img src="./assets/Images/iut-cergy.png" alt="IUT Cergy" class="school-logo">
+          <div class="education-title">
+            <h3>DUT génie civil construction durable - IUT Cergy</h3>
+            <p class="education-period">2021 - 2022</p>
+          </div>
+        </div>
+        <div class="education-content">
+          <p>Pendant plus d'un an j'ai pu améliorer mes compétences en anglais (passage du TOEIC), gestion de multiples projets de construction, coordination des équipes, suivi strict des échéanciers, expérience en collaboration transversale.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section class="projects-section section-card" id="projets">
+      <h2 class="section-title"><img src="https://www.gstatic.com/images/icons/material/system/1x/lightbulb_black_24dp.png" alt="projects icon"> Projets</h2>
+      
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./assets/Images/projet-seo.jpg" alt="Projet SEO">
+          </div>
+          <div class="project-content">
+            <h3>Optimisation SEO</h3>
+            <p>Stratégie complète pour améliorer le référencement naturel d'un site e-commerce.</p>
+            <div class="project-tags">
+              <span class="project-tag">SEO</span>
+              <span class="project-tag">Netlinking</span>
+              <span class="project-tag">Content</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./assets/Images/projet-email.jpg" alt="Projet Email Marketing">
+          </div>
+          <div class="project-content">
+            <h3>Campagne Email Marketing</h3>
+            <p>Conception et mise en place d'une série d'emails automatisés pour un parcours client optimisé.</p>
+            <div class="project-tags">
+              <span class="project-tag">Email</span>
+              <span class="project-tag">Automation</span>
+              <span class="project-tag">HTML/CSS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./assets/Images/projet-analytics.jpg" alt="Projet Analytics">
+          </div>
+          <div class="project-content">
+            <h3>Tableau de bord Analytics</h3>
+            <p>Création d'un dashboard complet sur Looker Studio pour le suivi de performance web.</p>
+            <div class="project-tags">
+              <span class="project-tag">Data</span>
+              <span class="project-tag">Analytics</span>
+              <span class="project-tag">Reporting</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">
+            <img src="./assets/Images/projet-social.jpg" alt="Projet Social Media">
+          </div>
+          <div class="project-content">
+            <h3>Stratégie Social Media</h3>
+            <p>Élaboration et exécution d'une stratégie de contenu pour Instagram et LinkedIn.</p>
+            <div class="project-tags">
+              <span class="project-tag">Social</span>
+              <span class="project-tag">Content</span>
+              <span class="project-tag">Engagement</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="projects-cta">
+        <a href="#" class="google-btn">Voir tous les projets</a>
+      </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="contact-section section-card" id="contact">
+      <h2 class="section-title"><img src="https://www.gstatic.com/images/icons/material/system/1x/email_black_24dp.png" alt="contact icon"> Contact</h2>
+      
+      <div class="contact-grid">
+        <div class="contact-form">
+          <form action="#" method="post" id="contact-form">
+            <div class="form-group">
+              <label for="name">Nom</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="company">Entreprise</label>
+              <input type="text" id="company" name="company">
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="google-btn">Envoyer</button>
+          </form>
+          <div id="form-success" class="form-success" style="display: none;">
+            <img src="https://www.gstatic.com/images/icons/material/system/1x/check_circle_black_24dp.png" alt="Success">
+            <p>Votre message a été envoyé avec succès ! Je vous répondrai dans les plus brefs délais.</p>
+          </div>
+        </div>
+        <div class="contact-info">
+          <div class="contact-methods">
+            <div class="contact-method">
+              <img src="https://www.gstatic.com/images/icons/material/system/1x/phone_black_24dp.png" alt="phone">
+              <a href="tel:+33766489982">07 66 48 99 82</a>
+            </div>
+            <div class="contact-method">
+              <img src="https://www.gstatic.com/images/icons/material/system/1x/email_black_24dp.png" alt="email">
+              <a href="mailto:clem.rondepierre.cr@gmail.com">clem.rondepierre.cr@gmail.com</a>
+            </div>
+            <div class="contact-method">
+              <img src="https://www.gstatic.com/images/icons/material/system/1x/location_on_black_24dp.png" alt="location">
+              <span>18 rue d'Aguesseau, 92100 Boulogne-Billancourt</span>
+            </div>
+            <div class="contact-method">
+              <img src="https://www.gstatic.com/images/icons/material/system/1x/schedule_black_24dp.png" alt="schedule">
+              <span>Disponible pour une alternance à partir de Septembre 2024</span>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://linkedin.com/in/clement-rondepierre" target="_blank" class="social-link">
+              <img src="./assets/Images/linkedin.png" alt="LinkedIn">
+            </a>
+            <a href="https://github.com/clementrondepierre" target="_blank" class="social-link">
+              <img src="./assets/Images/github.png" alt="GitHub">
+            </a>
+          </div>
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.969163854646!2d2.2372658!3d48.8372223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67ae2c7fb0353%3A0x9e80a07b1ae04b18!2s18%20Rue%20d&#39;Aguesseau%2C%2092100%20Boulogne-Billancourt!5e0!3m2!1sfr!2sfr!4v1684147941356!5m2!1sfr!2sfr"
+              width="100%" 
+              height="200" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cv-footer">
+    <div class="footer-wrapper">
+      <div class="footer-left">
+        <p>© 2025 Clément Rondepierre</p>
+      </div>
+      <div class="footer-center">
+        <p>🎓 Disponible pour une alternance en marketing digital</p>
+      </div>
+      <div class="footer-right">
+        <a href="index.html">CVgle</a>
+        <a href="#parcours" class="scroll-link">Parcours</a>
+        <a href="#competences" class="scroll-link">Compétences</a>
+        <a href="#formations" class="scroll-link">Formations</a>
+        <a href="#contact" class="scroll-link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Gestionnaire pour le formulaire de contact
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Simulation d'envoi du formulaire
+      const form = this;
+      const successMessage = document.getElementById('form-success');
+      
+      // Animation du bouton
+      const submitButton = form.querySelector('button[type="submit"]');
+      submitButton.innerHTML = 'Envoi en cours...';
+      submitButton.disabled = true;
+      
+      // Délai simulé pour l'envoi (à remplacer par votre vraie logique d'envoi)
+      setTimeout(() => {
+        form.style.display = 'none';
+        successMessage.style.display = 'flex';
+        
+        // Réinitialisation après 5 secondes
+        setTimeout(() => {
+          form.reset();
+          form.style.display = 'block';
+          successMessage.style.display = 'none';
+          submitButton.innerHTML = 'Envoyer';
+          submitButton.disabled = false;
+        }, 5000);
+      }, 1500);
+    });
+    
+    // Navigation active au défilement
+    window.addEventListener('scroll', function() {
+      const scrollPosition = window.scrollY;
+      
+      // Header effet au défilement
+      if (scrollPosition > 100) {
+        document.querySelector('.cv-header').classList.add('header-scrolled');
+      } else {
+        document.querySelector('.cv-header').classList.remove('header-scrolled');
+      }
+      
+      // Activation des onglets de navigation en fonction de la position
+      document.querySelectorAll('section[id]').forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          document.querySelectorAll('.cv-tabs a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${sectionId}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    });
+    
+    // Gestion de la recherche
+    document.getElementById('search-button').addEventListener('click', function() {
+      handleSearch({ preventDefault: () => {} });
+    });
+    
+    document.getElementById('search-input').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        handleSearch(e);
+      }
+    });
+  </script>
+  <script src="responsive-script.js"></script>
+</body>
+</html>

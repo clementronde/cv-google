@@ -1,0 +1,369 @@
+/* Police Google */
+@font-face {
+  font-family: 'Product Sans';
+  src: url('./assets/font/product-sans/ProductSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #202124;
+  min-height: 100vh;
+}
+
+/* ===== HEADER ===== */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 16px 0;
+  height: 48px;
+  font-size: 13px;
+}
+
+.left-links,
+.right-links {
+  display: flex;
+  align-items: center;
+}
+
+.left-links a,
+.right-links a {
+  padding: 0 8px;
+  margin: 0 4px;
+  color: #202124;
+  text-decoration: none;
+  line-height: 24px;
+}
+
+.left-links a:hover,
+.right-links a:hover {
+  text-decoration: underline;
+}
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #8ab4f8;
+  border-radius: 50%;
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+/* ===== CENTRE ===== */
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  padding-bottom: 100px;
+  max-height: 290px;
+  margin-top: calc(100vh - 660px);
+}
+
+.logo-google {
+  font-family: 'Product Sans', Arial, sans-serif;
+  font-size: 92px;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 20px;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+/* ===== SEARCH BOX ===== */
+.search-box {
+  width: 100%;
+  max-width: 584px;
+  margin: 0 auto;
+}
+
+.search-input {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.search-input input {
+  width: 100%;
+  height: 46px;
+  padding: 0 50px;
+  border-radius: 24px;
+  border: 1px solid #dfe1e5;
+  box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.search-input input:hover {
+  box-shadow: 0 1px 6px rgba(32,33,36,0.35);
+  border-color: rgba(223,225,229,0);
+}
+
+.search-input input:focus {
+  box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+}
+
+/* icônes placées à l'intérieur */
+.search-icons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.search-icons img {
+  height: 20px;
+  width: 20px;
+  opacity: 0.55;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.left-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.right-icons {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 12px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.buttons button {
+  background-color: #f8f9fa;
+  border: 1px solid #f8f9fa;
+  border-radius: 4px;
+  color: #3c4043;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  margin: 0 4px;
+  padding: 0 16px;
+  height: 36px;
+  min-width: 54px;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  border: 1px solid #dadce0;
+  background-color: #f8f9fa;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;
+  background: #f2f2f2;
+  color: #70757a;
+}
+
+.footer-top {
+  padding: 15px 30px;
+  border-bottom: 1px solid #dadce0;
+  font-size: 15px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+.footer-left,
+.footer-right {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.footer-left a,
+.footer-right a {
+  padding: 15px;
+  color: #70757a;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.footer-left a:hover,
+.footer-right a:hover {
+  text-decoration: underline;
+}
+
+.footer-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .footer-bottom {
+    justify-content: space-evenly;
+  }
+  
+  .footer-center {
+    order: 1;
+    width: 100%;
+    padding: 10px 0;
+  }
+  
+  .footer-left {
+    order: 2;
+  }
+  
+  .footer-right {
+    order: 3;
+  }
+}
+
+@media (max-width: 650px) {
+  .center-container {
+    margin-top: 10vh;
+    padding-bottom: 50px;
+  }
+  
+  .logo-google {
+    font-size: 70px;
+  }
+  
+  .search-input {
+    width: 90%;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-left, 
+  .footer-right {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* Styles complémentaires pour la barre de recherche */
+
+.search-input {
+  position: relative;
+}
+
+/* Effet de focus amélioré pour la barre de recherche */
+.search-input input:focus {
+  box-shadow: 0 2px 8px rgba(32,33,36,0.3);
+  border-color: rgba(223,225,229,0);
+}
+
+/* Animation du curseur pour simuler la frappe */
+@keyframes blinkCursor {
+  0%, 100% { border-right-color: transparent; }
+  50% { border-right-color: #1a73e8; }
+}
+
+.search-input input {
+  caret-color: #1a73e8; /* Couleur du curseur */
+}
+
+/* Personnalisation du placeholder */
+.search-input input::placeholder {
+  color: #9aa0a6;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.search-input input:focus::placeholder {
+  opacity: 0.6;
+}
+
+/* Style pour les icônes interactives */
+.search-icons img {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.search-icons img:hover {
+  opacity: 0.8;
+}
+
+/* Animation subtile lors de la frappe */
+@keyframes subtle-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.typing-animation {
+  animation: subtle-pulse 0.3s ease-in-out;
+}
+
+/* Amélioration des boutons */
+.buttons button {
+  transition: background-color 0.2s, box-shadow 0.2s, color 0.2s;
+}
+
+.buttons button:hover {
+  box-shadow: 0 1px 2px rgba(60,64,67,0.2);
+  background-color: #f8f9fa;
+  color: #202124;
+}
+
+.buttons button:active {
+  background-color: #f1f3f4;
+  box-shadow: 0 1px 1px rgba(60,64,67,0.1);
+}
+
+/* Effet de focus pour les boutons */
+.buttons button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(26,115,232,0.4);
+}
+
+/* Adaptation du formulaire pour les appareils mobiles */
+@media (max-width: 480px) {
+  .search-input input {
+    height: 42px;
+    font-size: 15px;
+    padding: 0 40px;
+  }
+  
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+  
+  .buttons button {
+    width: 100%;
+    margin: 0;
+  }
+}

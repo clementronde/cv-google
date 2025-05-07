@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CVgle</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="./transition.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- Meta tags pour le référencement -->
+  <meta name="description" content="CV de Clément Rondepierre - Alternant en marketing digital">
+  <meta name="keywords" content="CV, alternance, marketing digital, Clément Rondepierre">
+  <!-- Préchargement des pages principales -->
+  <link rel="preload" href="cv.html" as="document">
+  <link rel="preload" href="resultats.html" as="document">
+</head>
+<body>
+
+  <header class="top-nav">
+    <div class="left-links">
+      <a href="cv.html#profile">À propos</a>
+      <a href="cv.html#projets">Portfolio</a>
+    </div>
+    <div class="right-links">
+      <a href="cv.html#competences">Compétences</a>
+      <a href="cv.html#contact">Contact</a>
+      <div class="profile-icon"></div>
+    </div>
+  </header>
+
+  <main class="center-container">
+    <h1 class="logo-google"><span style="color: rgb(66, 133, 244);">C</span><span style="color: rgb(234, 67, 53);">v</span><span style="color: rgb(251, 188, 5);">g</span><span style="color: rgb(52, 168, 83);">l</span><span style="color: rgb(66, 133, 244);">e</span></h1>
+    <form class="search-box" id="search-form">
+      <div class="search-input">
+        <input type="text" name="q" placeholder="Rechercher votre futur alternant..." id="search-input" autocomplete="off">
+        <div class="search-icons">
+          <img src="https://www.gstatic.com/images/icons/material/system/1x/search_black_24dp.png" alt="search icon" class="left-icon">
+          <div class="right-icons">
+            <img src="https://www.gstatic.com/images/icons/material/system/1x/mic_black_24dp.png" alt="mic icon">
+            <img src="https://www.gstatic.com/images/icons/material/system/1x/photo_camera_black_24dp.png" alt="camera icon">
+          </div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button type="submit">Recherche Google</button>
+        <button type="button" id="lucky-button">J'ai de la chance</button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top">France</div>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <a href="cv.html#formations">Formation</a>
+        <a href="resultats.html">Expériences</a>
+        <a href="cv.html#projets">Projets</a>
+      </div>
+      <div class="footer-center">
+        <span>🎓 Disponible pour une alternance en marketing digital</span>
+      </div>
+      <div class="footer-right">
+        <a href="https://linkedin.com/in/clement-rondepierre" target="_blank">LinkedIn</a>
+        <a href="https://github.com/clementrondepierre" target="_blank">GitHub</a>
+        <a href="cv.html#competences">Certifications</a>
+        <a href="cv.html#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="transition.js"></script>
+  <script src="index-script.js"></script>
+</body>
+</html>
