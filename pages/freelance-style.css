@@ -7,7 +7,12 @@
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0); }
 }
-
+html, body {
+  overflow-x: hidden; /* Empêche le scroll horizontal */
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
 
 :root {
   --primary-color: #1a73e8;
@@ -259,7 +264,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 100px 0 80px;
+  padding: 50px 0 80px;
   gap: 60px;
 }
 
@@ -1068,6 +1073,31 @@ input:focus, textarea:focus, select:focus {
   
   .about-stats {
     gap: 30px;
+  }
+}
+
+@media (max-width: 992px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    max-width: 300px;
+    height: 100vh;
+    background: #fff;
+    padding: 100px 30px 30px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    transition: right 0.3s ease;
+    box-shadow: none;
+    z-index: 100;
+    overflow-y: auto;
+  }
+  
+  .nav-links.active {
+    right: 0;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -1977,17 +2007,227 @@ input:focus, textarea:focus, select:focus {
 }
 
 .problem-icon-visibility::before {
-  background-image: url('../assets/Icons/visibility.svg');
+  background-image: url('../assets/Icons/visibility.png');
 }
 
 .problem-icon-conversion::before {
-  background-image: url('../assets/Icons/conversion.svg');
+  background-image: url('../assets/Icons/conversion.png');
 }
 
 .problem-icon-roi::before {
-  background-image: url('../assets/Icons/roi.svg');
+  background-image: url('../assets/Icons/ROI.png');
 }
 
 .problem-icon-data::before {
-  background-image: url('../assets/Icons/data.svg');
+  background-image: url('../assets/Icons/data.png');
 }
+
+
+/* Animation professionnelle du curseur */
+
+/* 1. Styles pour le curseur personnalisé */
+.custom-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.1s ease;
+  z-index: 9999;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary-color);
+  transition: width 0.3s, height 0.3s, opacity 0.3s;
+}
+
+.cursor-outline {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(26, 115, 232, 0.5);
+  transition: width 0.3s, height 0.3s, border-color 0.3s, transform 0.3s;
+}
+
+/* 2. États des curseurs pour différentes interactions */
+/* Curseur sur les liens */
+a:hover ~ .custom-cursor-container .cursor-dot {
+  opacity: 0.5;
+  background-color: var(--primary-color);
+}
+
+a:hover ~ .custom-cursor-container .cursor-outline {
+  border-color: var(--primary-color);
+  width: 60px;
+  height: 60px;
+  background-color: rgba(26, 115, 232, 0.1);
+}
+
+/* Curseur sur les boutons */
+button:hover ~ .custom-cursor-container .cursor-dot,
+.primary-button:hover ~ .custom-cursor-container .cursor-dot,
+.secondary-button:hover ~ .custom-cursor-container .cursor-dot,
+.cta-button:hover ~ .custom-cursor-container .cursor-dot {
+  opacity: 0.5;
+  background-color: white;
+}
+
+button:hover ~ .custom-cursor-container .cursor-outline,
+.primary-button:hover ~ .custom-cursor-container .cursor-outline,
+.secondary-button:hover ~ .custom-cursor-container .cursor-outline,
+.cta-button:hover ~ .custom-cursor-container .cursor-outline {
+  border-color: white;
+  width: 70px;
+  height: 70px;
+  background-color: rgba(26, 115, 232, 0.3);
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-radius: 10px;
+}
+
+/* Curseur sur les inputs */
+input:hover ~ .custom-cursor-container .cursor-dot,
+textarea:hover ~ .custom-cursor-container .cursor-dot {
+  opacity: 0.7;
+  background-color: var(--accent-color);
+}
+
+input:hover ~ .custom-cursor-container .cursor-outline,
+textarea:hover ~ .custom-cursor-container .cursor-outline {
+  border-color: var(--accent-color);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(251, 188, 4, 0.1);
+}
+
+/* 3. Animation de traînée */
+.cursor-trail {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgba(26, 115, 232, 0.3);
+  pointer-events: none;
+  z-index: 9998;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+/* 4. Support responsive */
+@media (max-width: 768px) {
+  .custom-cursor-container {
+    display: none; /* Désactiver sur mobile et tablette */
+  }
+}
+
+/* 5. État actif pour le clic */
+body.cursor-active .cursor-dot {
+  transform: scale(0.5);
+  opacity: 0.8;
+}
+
+body.cursor-active .cursor-outline {
+  transform: translate(-50%, -50%) scale(0.9);
+  border-color: rgba(26, 115, 232, 0.8);
+  background-color: rgba(26, 115, 232, 0.1);
+}
+
+
+/* Styles avancés pour le curseur magnétique */
+.magnetic-button {
+  position: relative;
+  overflow: visible;
+}
+
+.magnetic-area {
+  position: absolute;
+  inset: -50px; /* Crée une zone plus grande que le bouton pour la détection */
+  z-index: 1;
+  opacity: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.magnetic-content {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s cubic-bezier(0.21, 0.61, 0.35, 1);
+  position: relative;
+  z-index: 2;
+}
+
+/* Particules pour effets spéciaux */
+.cursor-particles {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 9997;
+  transform: translate(-50%, -50%);
+  background-color: rgba(26, 115, 232, 0.5);
+}
+
+/* Effet spécial pour les boutons */
+.button-highlight {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(
+    circle at var(--mouse-x, center) var(--mouse-y, center),
+    rgba(26, 115, 232, 0.2) 0%,
+    rgba(26, 115, 232, 0) 60%
+  );
+  pointer-events: none;
+}
+
+/* Amélioration du focus pour l'accessibilité */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Améliorations visuelles pour le survol */
+.cta-button:hover .button-highlight,
+.primary-button:hover .button-highlight,
+.secondary-button:hover .button-highlight {
+  opacity: 1;
+}
+
+/* Curseurs personnalisés pour différentes sections */
+.hero-section .cursor-outline {
+  border-color: rgba(26, 115, 232, 0.7);
+}
+
+.results-section .cursor-outline {
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.results-section .cursor-dot {
+  background-color: white;
+}
+

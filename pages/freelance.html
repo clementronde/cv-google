@@ -266,12 +266,32 @@
 }
 
 .dashboard-container {
-  width: 100%; /* S'assure que le dashboard prend toute la largeur disponible */
-  max-width: 550px; /* Limite la taille maximale */
-  margin: 0 auto; 
-    position: relative;
-    overflow: visible; /* Crucial pour permettre aux badges de déborder */
-    z-index: 2; /* Centre le dashboard si l'espace est suffisant */
+  position: relative;
+  width: 100%; 
+  height: auto !important;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  overflow: visible !important;
+  margin: 30px 0;
+  padding: 20px 0;
+}
+
+#dashboard-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 25px;
+  width: 90%;
+  max-width: 480px;
+  position: relative;
+  z-index: 10;
+  transform: perspective(1200px) rotateX(3deg) rotateY(5deg);
+  transition: transform 0.3s ease;
+  margin: 20px auto;
+  overflow: visible !important;
 }
 .hero-section {
     overflow: visible;
@@ -348,6 +368,7 @@
           <a href="#services">Services</a>
           <a href="#resultats">Résultats</a>
           <a href="#audit" class="cta-button pulse-effect">Audit Gratuit</a>
+          
         </div>
         <button class="mobile-menu-toggle">
           <span></span>
@@ -372,7 +393,7 @@
         </div>
       </div>
      <div class="hero-image" >
-  <div class="dashboard-container" style="position: relative; width: 100%; height: 750px; display: flex; align-items: center; justify-content: center; perspective: 1200px; overflow: hidden;">
+  <div class="dashboard-container" style="position: relative; width: 100%; display: flex; align-items: center; justify-content: center; perspective: 1200px; overflow: hidden;">
     <!-- Fond avec effet de grille -->
     <div style="position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px); background-size: 20px 20px; opacity: 0.5;"></div>
     
@@ -622,7 +643,7 @@
       <div class="expertise-grid">
         <div class="expertise-card">
           <div class="card-icon">
-            <img src="../assets/Icons/sea.svg" alt="SEA">
+            <img src="../assets/Icons/sea.png" alt="SEA">
           </div>
           <h3>Acquisition payante (SEA)</h3>
           <p>Campagnes publicitaires performantes sur Google Ads, Meta, LinkedIn pour générer du trafic qualifié et maximiser votre ROI.</p>
@@ -636,7 +657,7 @@
         
         <div class="expertise-card">
           <div class="card-icon">
-            <img src="../assets/Icons/seo.svg" alt="SEO">
+            <img src="../assets/Icons/seo.png" alt="SEO">
           </div>
           <h3>Référencement naturel (SEO)</h3>
           <p>Stratégie SEO complète pour améliorer votre visibilité organique, attirer du trafic qualifié et générer des conversions durables.</p>
@@ -650,7 +671,7 @@
         
         <div class="expertise-card">
           <div class="card-icon">
-            <img src="../assets/Icons/analytics.svg" alt="Analytics">
+            <img src="../assets/Icons/analytics.png" alt="Analytics">
           </div>
           <h3>Analytics & Data</h3>
           <p>Exploitation de vos données pour piloter votre stratégie digitale, comprendre vos utilisateurs et optimiser vos conversions.</p>
@@ -664,7 +685,7 @@
         
         <div class="expertise-card">
           <div class="card-icon">
-            <img src="../assets/Icons/website.svg" alt="Site Web">
+            <img src="../assets/Icons/website.png" alt="Site Web">
           </div>
           <h3>Sites Web Performants</h3>
           <p>Création et optimisation de sites web orientés conversion, responsive et optimisés pour le référencement.</p>
@@ -678,7 +699,7 @@
         
         <div class="expertise-card">
           <div class="card-icon">
-            <img src="../assets/Icons/social.svg" alt="Social Media">
+            <img src="../assets/Icons/socials.png" alt="Social Media">
           </div>
           <h3>Social Media Marketing</h3>
           <p>Stratégie social media engageante pour développer votre communauté, renforcer votre image de marque et générer des leads.</p>
@@ -692,7 +713,7 @@
         
         <div class="expertise-card">
           <div class="card-icon">
-            <img src="../assets/Icons/strategy.svg" alt="Stratégie">
+            <img src="../assets/Icons/strategy.png" alt="Stratégie">
           </div>
           <h3>Stratégie digitale</h3>
           <p>Vision globale et cohérente de votre présence en ligne, alignée avec vos objectifs business et votre positionnement.</p>
@@ -1302,10 +1323,510 @@
       </div>
     </div>
   </div>
+
+  <div class="custom-cursor-container">
+    <div class="cursor cursor-dot"></div>
+    <div class="cursor cursor-outline"></div>
+  </div>
+
+
 <script type="module" src="./dist/assets/index-OkrR8lRX.js"></script>
+<script>
+
+
+
+
+// Animation professionnelle du curseur
+document.addEventListener('DOMContentLoaded', function() {
+  // Créer les éléments de curseur personnalisé
+  const customCursorContainer = document.createElement('div');
+  customCursorContainer.className = 'custom-cursor-container';
+  
+  const cursorDot = document.createElement('div');
+  cursorDot.className = 'cursor cursor-dot';
+  
+  const cursorOutline = document.createElement('div');
+  cursorOutline.className = 'cursor cursor-outline';
+  
+  // Ajouter les éléments au DOM
+  customCursorContainer.appendChild(cursorDot);
+  customCursorContainer.appendChild(cursorOutline);
+  document.body.appendChild(customCursorContainer);
+  
+  // Fonction pour mettre à jour la position du curseur
+  function updateCursorPosition(e) {
+    const posX = e.clientX;
+    const posY = e.clientY;
+    
+    // Mettre à jour avec requestAnimationFrame pour de meilleures performances
+    window.requestAnimationFrame(() => {
+      cursorDot.style.left = `${posX}px`;
+      cursorDot.style.top = `${posY}px`;
+      
+      // Ajouter un léger délai pour le curseur extérieur (effet de traînage)
+      setTimeout(() => {
+        cursorOutline.style.left = `${posX}px`;
+        cursorOutline.style.top = `${posY}px`;
+      }, 80);
+    });
+  }
+  
+  // Effet de traînée
+  const maxTrails = 8;
+  const trailElements = [];
+  
+  // Créer les éléments de traînée
+  for (let i = 0; i < maxTrails; i++) {
+    const trail = document.createElement('div');
+    trail.className = 'cursor-trail';
+    customCursorContainer.appendChild(trail);
+    trailElements.push({
+      element: trail,
+      x: 0,
+      y: 0,
+      delay: i * 50 // délai croissant pour chaque élément de traînée
+    });
+  }
+  
+  // Position précédente pour calculer la vitesse
+  let prevX = 0;
+  let prevY = 0;
+  let moveSpeed = 0;
+  
+  // Fonction pour mettre à jour les traînées
+  function updateTrails(posX, posY) {
+    // Calculer la vitesse de déplacement
+    const distX = posX - prevX;
+    const distY = posY - prevY;
+    const distance = Math.sqrt(distX * distX + distY * distY);
+    
+    moveSpeed = Math.min(Math.max(distance / 10, 0), 1);
+    
+    trailElements.forEach((trail, index) => {
+      setTimeout(() => {
+        if (moveSpeed > 0.3) { // Afficher uniquement lors des mouvements rapides
+          trail.element.style.opacity = 0.7 - (index / maxTrails * 0.5);
+          trail.element.style.left = `${trail.x}px`;
+          trail.element.style.top = `${trail.y}px`;
+          
+          // Taille variable en fonction de la vitesse
+          const size = Math.max(3, 6 * moveSpeed) - index * 0.4;
+          trail.element.style.width = `${size}px`;
+          trail.element.style.height = `${size}px`;
+        } else {
+          trail.element.style.opacity = 0;
+        }
+      }, trail.delay);
+      
+      // Mettre à jour la position pour le prochain élément de traînée
+      if (index === 0) {
+        trail.x = posX;
+        trail.y = posY;
+      } else {
+        trail.x = trailElements[index - 1].x;
+        trail.y = trailElements[index - 1].y;
+      }
+    });
+    
+    // Mettre à jour les positions précédentes
+    prevX = posX;
+    prevY = posY;
+  }
+  
+  // Gérer les mouvements de la souris
+  document.addEventListener('mousemove', (e) => {
+    updateCursorPosition(e);
+    updateTrails(e.clientX, e.clientY);
+    
+    // Afficher le curseur personnalisé
+    cursorDot.style.opacity = 1;
+    cursorOutline.style.opacity = 1;
+  });
+  
+  // Gérer les interactions au clic
+  document.addEventListener('mousedown', () => {
+    document.body.classList.add('cursor-active');
+    cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+    cursorOutline.style.transform = 'translate(-50%, -50%) scale(0.7)';
+  });
+  
+  document.addEventListener('mouseup', () => {
+    document.body.classList.remove('cursor-active');
+    cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+    cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+  });
+  
+  // Gérer les interactions avec les éléments
+  const handleElementInteraction = () => {
+    const allLinks = document.querySelectorAll('a, button, .primary-button, .secondary-button, .cta-button');
+    const allInputs = document.querySelectorAll('input, textarea');
+    
+    // Animations pour les liens et boutons
+    allLinks.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
+        cursorDot.style.backgroundColor = 'var(--primary-color)';
+        cursorOutline.style.borderColor = 'var(--primary-color)';
+        cursorOutline.style.width = '60px';
+        cursorOutline.style.height = '60px';
+      });
+      
+      link.addEventListener('mouseleave', () => {
+        cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursorDot.style.backgroundColor = 'var(--primary-color)';
+        cursorOutline.style.borderColor = 'rgba(26, 115, 232, 0.5)';
+        cursorOutline.style.width = '40px';
+        cursorOutline.style.height = '40px';
+      });
+    });
+    
+    // Animations pour les champs de saisie
+    allInputs.forEach(input => {
+      input.addEventListener('mouseenter', () => {
+        cursorDot.style.backgroundColor = 'var(--accent-color)';
+        cursorOutline.style.borderColor = 'var(--accent-color)';
+        cursorOutline.style.width = '50px';
+        cursorOutline.style.height = '50px';
+      });
+      
+      input.addEventListener('mouseleave', () => {
+        cursorDot.style.backgroundColor = 'var(--primary-color)';
+        cursorOutline.style.borderColor = 'rgba(26, 115, 232, 0.5)';
+        cursorOutline.style.width = '40px';
+        cursorOutline.style.height = '40px';
+      });
+    });
+  };
+  
+  // Appliquer les interactions après un court délai
+  setTimeout(handleElementInteraction, 500);
+  
+  // Effectuer une mise à jour périodique pour éviter les problèmes avec les éléments chargés dynamiquement
+  setInterval(handleElementInteraction, 2000);
+  
+  // Détection de l'inactivité pour masquer le curseur
+  let inactivityTimer;
+  function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    cursorDot.style.opacity = 1;
+    cursorOutline.style.opacity = 1;
+    
+    inactivityTimer = setTimeout(() => {
+      cursorDot.style.opacity = 0;
+      cursorOutline.style.opacity = 0;
+      trailElements.forEach(trail => {
+        trail.element.style.opacity = 0;
+      });
+    }, 5000); // Masquer après 5 secondes d'inactivité
+  }
+  
+  document.addEventListener('mousemove', resetInactivityTimer);
+  resetInactivityTimer();
+  
+  // Effet magnétique pour les boutons CTA
+  const ctaButtons = document.querySelectorAll('.cta-button, .primary-button');
+  
+  ctaButtons.forEach(button => {
+    button.addEventListener('mousemove', (e) => {
+      const rect = button.getBoundingClientRect();
+      const buttonCenterX = rect.left + rect.width / 2;
+      const buttonCenterY = rect.top + rect.height / 2;
+      
+      // Distance entre le curseur et le centre du bouton
+      const distX = e.clientX - buttonCenterX;
+      const distY = e.clientY - buttonCenterY;
+      
+      // Attirer légèrement le curseur vers le bouton (effet magnétique)
+      const magnetStrength = 0.4;
+      cursorDot.style.transform = `translate(calc(-50% + ${distX * magnetStrength}px), calc(-50% + ${distY * magnetStrength}px)) scale(1.5)`;
+      cursorOutline.style.transform = `translate(calc(-50% + ${distX * magnetStrength * 0.7}px), calc(-50% + ${distY * magnetStrength * 0.7}px)) scale(1.2)`;
+    });
+  });
+  
+  // Désactiver le curseur standard en CSS
+  if (window.innerWidth > 768) {
+    document.body.style.cursor = 'none';
+  }
+  
+  // Réactiver le curseur standard sur petit écran
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 768) {
+      document.body.style.cursor = 'auto';
+      customCursorContainer.style.display = 'none';
+    } else {
+      document.body.style.cursor = 'none';
+      customCursorContainer.style.display = 'block';
+    }
+  });
+});
+
+
+// Script avancé pour effets magnétiques de curseur
+document.addEventListener('DOMContentLoaded', function() {
+  // 1. Effet magnétique pour les boutons
+  function setupMagneticButtons() {
+    const buttons = document.querySelectorAll('.cta-button, .primary-button, .secondary-button');
+    
+    buttons.forEach(button => {
+      // Ajouter la classe et la structure nécessaires
+      button.classList.add('magnetic-button');
+      
+      // Créer une zone de détection plus large
+      const magneticArea = document.createElement('div');
+      magneticArea.className = 'magnetic-area';
+      
+      // Wrapper pour le contenu
+      const contentWrapper = document.createElement('div');
+      contentWrapper.className = 'magnetic-content';
+      
+      // Effet de surbrillance
+      const highlight = document.createElement('div');
+      highlight.className = 'button-highlight';
+      
+      // Restructurer le DOM
+      button.appendChild(highlight);
+      
+      // Déplacer tout le contenu original dans le wrapper
+      while (button.firstChild && button.firstChild !== highlight && button.firstChild !== magneticArea) {
+        contentWrapper.appendChild(button.firstChild);
+      }
+      
+      button.appendChild(contentWrapper);
+      button.appendChild(magneticArea);
+      
+      // Effet lors du survol
+      button.addEventListener('mousemove', (e) => {
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Mise à jour des variables CSS pour le gradient radial
+        button.style.setProperty('--mouse-x', `${x}px`);
+        button.style.setProperty('--mouse-y', `${y}px`);
+        
+        // Distance depuis le centre (pour effet magnétique)
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        // Calcul du déplacement (plus proche du centre = moins de mouvement)
+        const moveX = (x - centerX) / 8;
+        const moveY = (y - centerY) / 8;
+        
+        // Appliquer la transformation
+        contentWrapper.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        highlight.style.opacity = '1';
+      });
+      
+      // Rétablir la position lors de la sortie
+      button.addEventListener('mouseleave', () => {
+        contentWrapper.style.transform = 'translate(0, 0)';
+        highlight.style.opacity = '0';
+      });
+      
+      // Effet de clic
+      button.addEventListener('mousedown', () => {
+        contentWrapper.style.transform = 'translate(0, 0) scale(0.97)';
+      });
+      
+      button.addEventListener('mouseup', () => {
+        contentWrapper.style.transform = 'translate(0, 0) scale(1)';
+      });
+    });
+  }
+  
+  // 2. Créer des particules pour les effets spéciaux
+  function createParticleSystem() {
+    const maxParticles = 30;
+    const particles = [];
+    
+    // Conteneur pour les particules
+    const particleContainer = document.createElement('div');
+    particleContainer.className = 'particle-container';
+    particleContainer.style.position = 'fixed';
+    particleContainer.style.inset = '0';
+    particleContainer.style.pointerEvents = 'none';
+    particleContainer.style.zIndex = '9997';
+    particleContainer.style.overflow = 'hidden';
+    document.body.appendChild(particleContainer);
+    
+    // Créer le pool de particules
+    for (let i = 0; i < maxParticles; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'cursor-particles';
+      particleContainer.appendChild(particle);
+      particles.push({
+        element: particle,
+        x: 0,
+        y: 0,
+        speedX: 0,
+        speedY: 0,
+        life: 0,
+        isActive: false,
+        size: 0,
+        hue: 0
+      });
+    }
+    
+    // Utiliser les particules lors des mouvements rapides
+    let prevX = 0;
+    let prevY = 0;
+    let prevTime = Date.now();
+    
+    document.addEventListener('mousemove', (e) => {
+      const currentTime = Date.now();
+      const deltaTime = currentTime - prevTime;
+      
+      // Calculer la vitesse du mouvement
+      const distX = e.clientX - prevX;
+      const distY = e.clientY - prevY;
+      const distance = Math.sqrt(distX * distX + distY * distY);
+      const speed = distance / deltaTime;
+      
+      // Créer des particules pour les mouvements rapides
+      if (speed > 0.7 && deltaTime > 20) {
+        emitParticles(e.clientX, e.clientY, Math.min(5, Math.floor(speed * 2)));
+      }
+      
+      prevX = e.clientX;
+      prevY = e.clientY;
+      prevTime = currentTime;
+    });
+    
+    // Fonction pour émettre des particules
+    function emitParticles(x, y, count) {
+      for (let i = 0; i < count; i++) {
+        const particle = particles.find(p => !p.isActive);
+        if (particle) {
+          activateParticle(particle, x, y);
+        }
+      }
+    }
+    
+    // Activer une particule
+    function activateParticle(particle, x, y) {
+      // Position initiale
+      particle.x = x;
+      particle.y = y;
+      
+      // Vélocité aléatoire
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 1 + Math.random() * 3;
+      particle.speedX = Math.cos(angle) * speed;
+      particle.speedY = Math.sin(angle) * speed;
+      
+      // Apparence
+      particle.size = 3 + Math.random() * 4;
+      particle.hue = 210 + Math.random() * 30; // Nuances de bleu
+      particle.life = 100 + Math.random() * 200;
+      particle.isActive = true;
+      
+      // Style initial
+      particle.element.style.opacity = '0.7';
+      particle.element.style.width = `${particle.size}px`;
+      particle.element.style.height = `${particle.size}px`;
+      particle.element.style.backgroundColor = `hsla(${particle.hue}, 80%, 60%, 0.7)`;
+    }
+    
+    // Animer les particules
+    function updateParticles() {
+      particles.forEach(particle => {
+        if (particle.isActive) {
+          // Mettre à jour la position
+          particle.x += particle.speedX;
+          particle.y += particle.speedY;
+          
+          // Appliquer une légère gravité
+          particle.speedY += 0.05;
+          
+          // Réduire la durée de vie
+          particle.life -= 3;
+          
+          // Mettre à jour l'apparence
+          const opacity = particle.life / 300;
+          const size = particle.size * (particle.life / 300);
+          
+          particle.element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
+          particle.element.style.opacity = opacity.toString();
+          particle.element.style.width = `${size}px`;
+          particle.element.style.height = `${size}px`;
+          
+          // Désactiver si la durée de vie est écoulée
+          if (particle.life <= 0) {
+            particle.isActive = false;
+            particle.element.style.opacity = '0';
+          }
+        }
+      });
+      
+      requestAnimationFrame(updateParticles);
+    }
+    
+    // Démarrer l'animation
+    updateParticles();
+  }
+  
+  // 3. Initialiser tous les effets
+  setupMagneticButtons();
+  createParticleSystem();
+  
+  // 4. Mise à jour en cas de changements dynamiques dans le DOM
+  const observer = new MutationObserver((mutations) => {
+    let shouldReinitialize = false;
+    
+    mutations.forEach(mutation => {
+      if (mutation.type === 'childList' && mutation.addedNodes.length) {
+        mutation.addedNodes.forEach(node => {
+          if (node.nodeType === 1) { // Element node
+            if (node.classList && 
+                (node.classList.contains('cta-button') || 
+                 node.classList.contains('primary-button') ||
+                 node.classList.contains('secondary-button'))) {
+              shouldReinitialize = true;
+            }
+          }
+        });
+      }
+    });
+    
+    if (shouldReinitialize) {
+      setupMagneticButtons();
+    }
+  });
+  
+  // Observer le body pour détecter les nouveaux boutons
+  observer.observe(document.body, { childList: true, subtree: true });
+});
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Correction du dashboard en responsive
+    const dashboardCard = document.getElementById('dashboard-card');
+    
+    function adjustDashboard() {
+      if (window.innerWidth <= 768) {
+        // Sur mobile, supprimer l'effet 3D
+        if (dashboardCard) {
+          dashboardCard.style.transform = 'none';
+        }
+      } else {
+        // Sur desktop, remettre l'effet 3D
+        if (dashboardCard) {
+          dashboardCard.style.transform = 'perspective(1200px) rotateX(3deg) rotateY(5deg)';
+        }
+      }
+    }
+    
+    // Appliquer les ajustements au chargement et au redimensionnement
+    adjustDashboard();
+    window.addEventListener('resize', adjustDashboard);
+  });
+  </script>
+
 
   <!-- Scripts -->
   <script>
+    
 // Script corrigé pour assurer la visibilité des badges
 document.addEventListener('DOMContentLoaded', function() {
   // Sélectionner tous les badges
