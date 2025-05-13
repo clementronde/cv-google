@@ -1,8 +1,8 @@
-// Script pour la redirection et l'autocomplétion de la barre de recherche
+// Script pour la redirection et l'autocomplétion de la barre de recherche avec effet de machine à écrire
 
 document.addEventListener('DOMContentLoaded', function() {
   // Initialisation
-  initAutocomplete();
+  initTypewriterEffect();
   setupButtonActions();
   
   // Ajouter la classe pour les animations
@@ -10,28 +10,32 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /**
- * Fonction pour gérer l'autocomplétion de la barre de recherche
+ * Fonction pour gérer l'effet de machine à écrire avec multiples phrases
  */
-function initAutocomplete() {
+function initTypewriterEffect() {
   const searchInput = document.querySelector('input[name="q"]');
   if (!searchInput) return;
   
-  const targetText = "meilleur alternant marketing 2025";
-  let typingTimer;
+  // Liste des phrases à afficher en rotation
+  const phrases = [
+    "meilleur alternant marketing digital 2025",
+    "meilleur alternant Data Analyst 2025",
+    "profil idéal pour alternance web 2025",
+    "alternant compétent en SEO et analytics",
+    "CV créatif et innovant"
+  ];
+  
+  let currentPhraseIndex = 0;
   let charIndex = 0;
+  let isDeleting = false;
+  let typingTimer;
   let hasStartedTyping = false;
-  let isAnimationComplete = false;
   
-  // Nous n'utilisons PAS 'readonly' pour permettre de cliquer et d'appuyer sur Entrée
-  // Au lieu de ça, nous allons bloquer les modifications via les événements
-  
-  // Gestion unifiée des événements pour éviter les doublons
-  const startTyping = () => {
-    if (!hasStartedTyping) {
-      hasStartedTyping = true;
-      startAutocomplete();
-    }
-  };
+  // Délais pour les différentes phases d'animation
+  const typingDelay = 50;      // Délai entre chaque caractère lors de l'écriture
+  const deletingDelay = 30;    // Délai entre chaque caractère lors de la suppression
+  const pauseBeforeDelete = 2000; // Pause avant de commencer à supprimer
+  const pauseBeforeType = 500;  // Pause avant de commencer à écrire une nouvelle phrase
   
   // Gérer le clic sur la barre de recherche
   searchInput.addEventListener('click', startTyping);
@@ -39,7 +43,7 @@ function initAutocomplete() {
   // Gérer le focus sur la barre de recherche
   searchInput.addEventListener('focus', startTyping);
   
-  // Empêcher la modification du texte tout en permettant la touche Entrée
+  // Empêcher la modification du texte par l'utilisateur
   searchInput.addEventListener('keydown', function(e) {
     // Permettre la touche Entrée (code 13)
     if (e.keyCode === 13) {
@@ -53,42 +57,72 @@ function initAutocomplete() {
   
   // Empêcher les modifications via la fonction input
   searchInput.addEventListener('input', function(e) {
-    // Si l'animation est terminée, restaurer le texte cible
-    if (isAnimationComplete) {
-      e.preventDefault();
-      searchInput.value = targetText;
-    }
+    e.preventDefault();
+    // Restaurer le texte actuel
+    updateInputText();
   });
   
-  function startAutocomplete() {
-    // Réinitialiser l'index et vider complètement l'input
-    charIndex = 0;
-    searchInput.value = '';
-    isAnimationComplete = false;
-    
-    // Arrêter tout timer précédent pour éviter les doublons
-    clearInterval(typingTimer);
-    
-    // Démarrer l'animation de frappe (30ms = vitesse plus rapide)
-    typingTimer = setInterval(() => {
-      if (charIndex < targetText.length) {
-        searchInput.value += targetText.charAt(charIndex);
-        charIndex++;
-      } else {
-        // Animation terminée
-        clearInterval(typingTimer);
-        isAnimationComplete = true;
-      }
-    }, 30); // Vitesse de frappe accélérée (30ms au lieu de 80ms)
+  function startTyping() {
+    if (!hasStartedTyping) {
+      hasStartedTyping = true;
+      typeLoop();
+    }
   }
   
-  // Lancer automatiquement l'autocomplétion après 2 secondes
+  function updateInputText() {
+    const currentPhrase = phrases[currentPhraseIndex];
+    if (isDeleting) {
+      searchInput.value = currentPhrase.substring(0, charIndex);
+      searchInput.classList.add('typing-animation');
+    } else {
+      searchInput.value = currentPhrase.substring(0, charIndex);
+      searchInput.classList.add('typing-animation');
+    }
+  }
+  
+  function typeLoop() {
+    const currentPhrase = phrases[currentPhraseIndex];
+    let typingSpeed = isDeleting ? deletingDelay : typingDelay;
+    
+    // Effacer le timer existant
+    clearTimeout(typingTimer);
+    
+    // Mise à jour du texte
+    updateInputText();
+    
+    // Logique pour avancer ou reculer dans le texte
+    if (!isDeleting) {
+      // Phase d'écriture
+      if (charIndex < currentPhrase.length) {
+        charIndex++;
+        typingTimer = setTimeout(typeLoop, typingSpeed);
+      } else {
+        // Texte complètement écrit, attendre avant de commencer à effacer
+        isDeleting = true;
+        typingTimer = setTimeout(typeLoop, pauseBeforeDelete);
+      }
+    } else {
+      // Phase d'effacement
+      if (charIndex > 0) {
+        charIndex--;
+        typingTimer = setTimeout(typeLoop, typingSpeed);
+      } else {
+        // Texte complètement effacé, passer à la phrase suivante
+        isDeleting = false;
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+        // Pause avant de commencer à écrire la nouvelle phrase
+        typingTimer = setTimeout(typeLoop, pauseBeforeType);
+      }
+    }
+  }
+  
+  // Lancer automatiquement l'effet de machine à écrire après 1 seconde
   let autoStartDelay = setTimeout(() => {
     if (!hasStartedTyping) {
       hasStartedTyping = true;
-      startAutocomplete();
+      typeLoop();
     }
-  }, 2000); // 2 secondes de délai
+  }, 1000);
   
   // Annuler le démarrage automatique si l'utilisateur clique sur la barre avant
   searchInput.addEventListener('click', () => {
@@ -101,10 +135,7 @@ function initAutocomplete() {
     searchForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      // Assurer que le texte complet est dans l'input
-      searchInput.value = targetText;
-      
-      // Ajouter la transition de sortie
+      // Rediriger avec le texte actuel
       document.body.classList.add('page-transitioning');
       
       // Rediriger vers la page de résultats
