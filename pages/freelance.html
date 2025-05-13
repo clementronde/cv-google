@@ -3,14 +3,341 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clément Rondepierre | Freelance Digital Marketing</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+  
+  <title>Clément Rondepierre | Expert Marketing Digital</title>
   <link rel="stylesheet" href="./freelance-style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+ 
+ 
+ 
+ <!-- End Google Tag Manager -->
+<style>
+    .form-success {
+      text-align: center;
+      padding: 40px 20px;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    .form-success img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+    }
+    
+    .form-success h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: var(--secondary-color);
+    }
+    
+    .success-signature {
+      font-style: italic;
+      font-size: 20px;
+      margin-top: 20px;
+      color: var(--primary-color);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Styles pour le popup d'audit */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    
+    .popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .popup-container {
+      background-color: #fff;
+      border-radius: var(--border-radius);
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s;
+    }
+    
+    .popup-overlay.active .popup-container {
+      transform: translateY(0);
+    }
+    
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--dark-gray);
+      cursor: pointer;
+      z-index: 2;
+    }
+    
+    .popup-content {
+      padding: 30px;
+    }
+    
+    .popup-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .popup-header h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+    
+    .popup-header p {
+      color: var(--text-color);
+      font-weight: 500;
+    }
+    
+    .popup-body p {
+      color: var(--dark-gray);
+      margin-bottom: 15px;
+    }
+    
+    .popup-benefits {
+      margin: 0 0 20px 20px;
+    }
+    
+    .popup-benefits li {
+      margin-bottom: 8px;
+      color: var(--dark-gray);
+    }
+    
+    .popup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .popup-form input {
+      padding: 12px 15px;
+      border: 1px solid var(--medium-gray);
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    .popup-form button {
+      background-color: var(--primary-color);
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .popup-form button:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .popup-note {
+      font-size: 12px;
+      color: var(--dark-gray);
+      text-align: center;
+    }
+  #dashboard-root {
+    width: 100%;
+    height: 400px; /* Ajustez selon vos besoins */
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Indicateur visuel pendant le chargement */
+  #dashboard-root::before {
+    content: "Chargement du dashboard...";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-style: italic;
+    color: #888;
+  }
+  
+  /* Cache le message de chargement quand React est chargé */
+  #dashboard-root.react-loaded::before {
+    display: none;
+  }
+
+  @keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.cta-button.pulse-effect {
+  position: relative;
+  animation: none; /* Supprime l'animation existante */
+  overflow: visible;
+}
+
+.cta-button.pulse-effect::before {
+  content: '';
+  position: absolute;
+  inset: 0; /* Couvre toute la surface du bouton */
+  border-radius: var(--border-radius);
+  z-index: -1;
+  animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 15px rgba(26, 115, 232, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(26, 115, 232, 0);
+  }
+}
+
+@keyframes dashOffset {
+  from { stroke-dashoffset: 400; }
+  to { stroke-dashoffset: 0; }
+}
+
+#trafic-line, #roi-line {
+  animation: dashOffset 2s ease-in-out forwards;
+  animation-delay: 1s;
+}
+
+#roi-line {
+  animation-delay: 1.5s;
+}
+
+.floating-badge {
+  opacity: 0;
+  transform: translateY(20px);
+  animation-fill-mode: forwards !important;
+    z-index: 10; /* Valeur plus élevée pour s'assurer qu'ils sont au-dessus de tout */
+    position: absolute;
+}
+.hero-content {
+  display: flex;
+  flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+  gap: 30px;
+  overflow: visible;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-text, .hero-image {
+  flex: 1;
+  min-width: 300px; /* Assure une taille minimale */
+}
+
+.dashboard-container {
+  width: 100%; /* S'assure que le dashboard prend toute la largeur disponible */
+  max-width: 550px; /* Limite la taille maximale */
+  margin: 0 auto; 
+    position: relative;
+    overflow: visible; /* Crucial pour permettre aux badges de déborder */
+    z-index: 2; /* Centre le dashboard si l'espace est suffisant */
+}
+.hero-section {
+    overflow: visible;
+  }
+
+@media (max-width: 1400px) {
+  .container {
+    width: 95%; /* Un peu plus large pour les écrans moyens */
+  }
+}
+
+@media (max-width: 1100px) {
+  .hero-content {
+    gap: 40px; /* Réduit l'espace entre les éléments */
+  }
+  
+  .dashboard-container {
+    max-width: 500px; /* S'assure que le dashboard n'est pas trop large */
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .hero-text, .hero-image {
+    max-width: 100%;
+  }
+  
+  .dashboard-container {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .dashboard-card {
+    max-width: 100% !important;
+  }
+}
+
+/* Pour éviter que le dashboard ne soit compressé horizontalement */
+.dashboard-card {
+  min-width: 400px; /* Assure une largeur minimale */
+  width: 90%; /* Prend 90% de la largeur du conteneur */
+}
+
+/* Pour les très petits écrans, réorganiser les métriques en une colonne */
+@media (max-width: 576px) {
+  #dashboard-card > div:nth-child(3) {
+    display: grid;
+    grid-template-columns: 1fr !important;
+  }
+}
+
+</style>
+
+
+
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <!-- Hero Section -->
   <header class="hero-section">
     <nav class="main-nav">
@@ -19,8 +346,8 @@
         <div class="nav-links">
           <a href="#expertises">Expertises</a>
           <a href="#services">Services</a>
-          <a href="#about">À propos</a>
-          <a href="#contact" class="cta-button">Contact</a>
+          <a href="#resultats">Résultats</a>
+          <a href="#audit" class="cta-button pulse-effect">Audit Gratuit</a>
         </div>
         <button class="mobile-menu-toggle">
           <span></span>
@@ -32,16 +359,198 @@
     
     <div class="container hero-content">
       <div class="hero-text">
-        <h1>Boostez votre <span class="highlight">présence digitale</span> avec une stratégie sur-mesure</h1>
-        <p>Freelance en marketing digital, j'accompagne les entreprises de toute taille dans leur stratégie digitale avec une approche axée sur les résultats.</p>
+        <div class="badge-special">Marketing Digital Freelance</div>
+        <h1>Transformez votre <span class="highlight">présence digitale</span> en machine à convertir</h1>
+        <p>Expert en stratégie digitale, j'accompagne entreprises et marques à développer leur visibilité en ligne, générer des leads qualifiés et augmenter leur retour sur investissement.</p>
         <div class="hero-buttons">
-          <a href="#contact" class="primary-button">Demander un audit gratuit</a>
+          <a href="#audit" class="primary-button">Obtenir mon audit gratuit</a>
           <a href="#services" class="secondary-button">Découvrir mes services</a>
         </div>
+        <div class="hero-trust">
+          <span>Déjà + de 30 clients satisfaits</span>
+          <div class="trust-stars">★★★★★</div>
+        </div>
       </div>
-      <div class="hero-image">
-        <img src="../assets/Images/Photo 1.png" alt="Clément Rondepierre - Marketing Digital">
+     <div class="hero-image" >
+  <div class="dashboard-container" style="position: relative; width: 100%; height: 750px; display: flex; align-items: center; justify-content: center; perspective: 1200px; overflow: hidden;">
+    <!-- Fond avec effet de grille -->
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1px); background-size: 20px 20px; opacity: 0.5;"></div>
+    
+    <!-- Dashboard -->
+    <div id="dashboard-card" style="background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); padding: 25px; width: 90%; max-width: 480px; position: relative; z-index: 10; transform: perspective(1200px) rotateX(3deg) rotateY(5deg); transition: transform 0.3s ease;">
+      <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #202124;">Résultats Marketing Digital</h3>
+      <p style="font-size: 14px; color: #5f6368; margin-bottom: 20px;">Performance moyenne après 6 mois</p>
+      
+      <!-- Grille des métriques -->
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px;">
+        <!-- Métrique 1 -->
+        <div style="background: #f0f7ff; border-radius: 8px; padding: 15px; border-left: 4px solid #4285F4; position: relative; overflow: hidden;">
+          <div style="font-size: 12px; color: #5f6368; margin-bottom: 8px; display: flex; align-items: center;">
+            <svg style="width: 14px; height: 14px; margin-right: 5px;" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+            Trafic mensuel
+          </div>
+          <div style="font-size: 26px; font-weight: 700; color: #202124;" id="metric-traffic">+3800</div>
+          <div style="font-size: 12px; color: #34A853;">+153% vs initial</div>
+        </div>
+        
+        <!-- Métrique 2 -->
+        <div style="background: #f0fbf5; border-radius: 8px; padding: 15px; border-left: 4px solid #34A853; position: relative; overflow: hidden;">
+          <div style="font-size: 12px; color: #5f6368; margin-bottom: 8px; display: flex; align-items: center;">
+            <svg style="width: 14px; height: 14px; margin-right: 5px;" viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+            Conversion
+          </div>
+          <div style="font-size: 26px; font-weight: 700; color: #202124;" id="metric-conversion">4.2%</div>
+          <div style="font-size: 12px; color: #34A853;">+2.1 pts vs initial</div>
+        </div>
+        
+        <!-- Métrique 3 -->
+        <div style="background: #fff0f0; border-radius: 8px; padding: 15px; border-left: 4px solid #EA4335; position: relative; overflow: hidden;">
+          <div style="font-size: 12px; color: #5f6368; margin-bottom: 8px; display: flex; align-items: center;">
+            <svg style="width: 14px; height: 14px; margin-right: 5px;" viewBox="0 0 24 24" fill="none" stroke="#EA4335" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+            Coût par clic
+          </div>
+          <div style="font-size: 26px; font-weight: 700; color: #202124;" id="metric-cost">10€</div>
+          <div style="font-size: 12px; color: #34A853;">-56% vs initial</div>
+        </div>
+        
+        <!-- Métrique 4 -->
+        <div style="background: #fffbf0; border-radius: 8px; padding: 15px; border-left: 4px solid #FBBC04; position: relative; overflow: hidden;">
+          <div style="font-size: 12px; color: #5f6368; margin-bottom: 8px; display: flex; align-items: center;">
+            <svg style="width: 14px; height: 14px; margin-right: 5px;" viewBox="0 0 24 24" fill="none" stroke="#FBBC04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M16 16v-4h-8v-4h8"></path>
+            </svg>
+            ROI moyen
+          </div>
+          <div style="font-size: 26px; font-weight: 700; color: #202124;" id="metric-roi">3.8x</div>
+          <div style="font-size: 12px; color: #34A853;">+240% vs initial</div>
+        </div>
       </div>
+      
+      <!-- Graphique -->
+      <div style="background: #f8f9fa; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+          <div style="font-size: 14px; font-weight: 600; color: #202124;">Performance SEA/SEO</div>
+          <div style="font-size: 12px; color: #4285F4; display: flex; align-items: center;">
+            6 derniers mois
+            <svg style="width: 12px; height: 12px; margin-left: 5px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+        </div>
+        <div id="chart-container" style="height: 160px; position: relative; overflow: visible;">
+          <!-- SVG pour le graphique -->
+          <!-- SVG pour le graphique -->
+<svg width="100%" height="100%" viewBox="0 0 400 150" preserveAspectRatio="none" id="performance-chart">
+  <!-- Grille de fond -->
+  <g class="grid">
+    <line x1="0" y1="120" x2="400" y2="120" stroke="#f0f0f0" stroke-width="1"/>
+    <line x1="0" y1="90" x2="400" y2="90" stroke="#f0f0f0" stroke-width="1"/>
+    <line x1="0" y1="60" x2="400" y2="60" stroke="#f0f0f0" stroke-width="1"/>
+    <line x1="0" y1="30" x2="400" y2="30" stroke="#f0f0f0" stroke-width="1"/>
+  </g>
+  
+  <!-- Mois -->
+  <text x="40" y="140" text-anchor="middle" font-size="10" fill="#5f6368">Fév</text>
+  <text x="120" y="140" text-anchor="middle" font-size="10" fill="#5f6368">Mar</text>
+  <text x="200" y="140" text-anchor="middle" font-size="10" fill="#5f6368">Avr</text>
+  <text x="280" y="140" text-anchor="middle" font-size="10" fill="#5f6368">Mai</text>
+  <text x="360" y="140" text-anchor="middle" font-size="10" fill="#5f6368">Juin</text>
+  
+  <!-- Lignes du graphique (ajustées pour ne pas être tronquées) -->
+  <path id="trafic-line" d="M40,110 L120,90 L200,70 L280,50 L360,30" stroke="#4285F4" stroke-width="2" fill="none" stroke-dasharray="400" stroke-dashoffset="400"/>
+  <path id="roi-line" d="M40,120 L120,100 L200,90 L280,80 L360,60" stroke="#FBBC04" stroke-width="2" fill="none" stroke-dasharray="400" stroke-dashoffset="400"/>
+</svg>
+        </div>
+      </div>
+      
+      <!-- Pied de page -->
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-size: 13px; color: #5f6368; display: flex; align-items: center;">
+          <svg style="width: 16px; height: 16px; margin-right: 5px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          34 clients satisfaits
+        </div>
+        <div style="color: #FBBC04; font-size: 14px;">★★★★★</div>
+      </div>
+      
+      <!-- Badge temps réel -->
+      <div style="position: absolute; bottom: 10px; right: 10px; background: #4285F4; color: white; font-size: 11px; padding: 3px 8px; border-radius: 4px; display: flex; align-items: center;">
+        <div style="width: 6px; height: 6px; background: white; border-radius: 50%; margin-right: 5px; position: relative;">
+          <div class="pulse-animation" style="position: absolute; inset: 0; background: white; border-radius: 50%; opacity: 0.7;"></div>
+        </div>
+        Dashboard en temps réel
+      </div>
+    </div>
+    
+    <!-- Badges flottants -->
+    
+    </div>
+    
+  </div>
+  <div class="dashboard-badges-container">
+    <!-- Badge Google Analytics -->
+    <div class="floating-badge google-analytics">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </svg>
+      <span>Google Analytics 4</span>
+    </div>
+    
+    <!-- Badge Google Ads -->
+    <div class="floating-badge google-ads">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#34A853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+      </svg>
+      <span>Google Ads</span>
+    </div>
+    
+    <!-- Badge SEO Expert -->
+    <div class="floating-badge seo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#EA4335" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+      </svg>
+      <span>SEO Expert</span>
+    </div>
+    
+    <!-- Badge Meta Business -->
+    <div class="floating-badge meta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#1877F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+      </svg>
+      <span>Meta Business</span>
+    </div>
+    
+    <!-- Badge Data Studio -->
+    <div class="floating-badge data-studio">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FBBC04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+        <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+        <line x1="6" y1="6" x2="6.01" y2="6"></line>
+        <line x1="6" y1="18" x2="6.01" y2="18"></line>
+      </svg>
+      <span>Data Studio</span>
+    </div>
+  </div>
+
     </div>
     
     <div class="hero-badges">
@@ -66,12 +575,48 @@
     </div>
   </header>
 
+  <!-- Problématiques Section -->
+  <section class="problems-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Votre entreprise rencontre-t-elle ces défis digitaux ?</h2>
+        <p>Si vous vous reconnaissez dans l'une de ces situations, nous devons parler.</p>
+      </div>
+      
+      <div class="problems-grid">
+        <div class="problem-card">
+          <div class="problem-icon"><i class="problem-icon-visibility"></i></div>
+          <h3>Manque de visibilité en ligne</h3>
+          <p>Votre site web ne génère pas suffisamment de trafic malgré un contenu de qualité et une offre pertinente.</p>
+        </div>
+        
+        <div class="problem-card">
+          <div class="problem-icon"><i class="problem-icon-conversion"></i></div>
+          <h3>Faible taux de conversion</h3>
+          <p>Vous attirez des visiteurs mais peu d'entre eux deviennent des leads ou des clients.</p>
+        </div>
+        
+        <div class="problem-card">
+          <div class="problem-icon"><i class="problem-icon-roi"></i></div>
+          <h3>ROI publicitaire décevant</h3>
+          <p>Vos campagnes publicitaires coûtent cher mais ne génèrent pas les résultats escomptés.</p>
+        </div>
+        
+        <div class="problem-card">
+          <div class="problem-icon"><i class="problem-icon-data"></i></div>
+          <h3>Données inexploitées</h3>
+          <p>Vous collectez des données mais ne savez pas comment les utiliser pour optimiser votre stratégie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Expertise Section -->
   <section id="expertises" class="expertise-section">
     <div class="container">
       <div class="section-header">
         <h2>Mes expertises</h2>
-        <p>Des solutions adaptées à vos besoins pour maximiser votre présence en ligne</p>
+        <p>Des solutions adaptées à vos objectifs business pour maximiser votre croissance</p>
       </div>
       
       <div class="expertise-grid">
@@ -80,7 +625,13 @@
             <img src="../assets/Icons/sea.svg" alt="SEA">
           </div>
           <h3>Acquisition payante (SEA)</h3>
-          <p>Création et optimisation de campagnes publicitaires sur Google Ads, Meta, LinkedIn pour générer du trafic qualifié et des conversions.</p>
+          <p>Campagnes publicitaires performantes sur Google Ads, Meta, LinkedIn pour générer du trafic qualifié et maximiser votre ROI.</p>
+          <ul class="expertise-features">
+            <li>Structure de compte optimisée</li>
+            <li>Ciblage précis des audiences</li>
+            <li>Création d'annonces impactantes</li>
+            <li>Optimisation continue des performances</li>
+          </ul>
         </div>
         
         <div class="expertise-card">
@@ -88,7 +639,13 @@
             <img src="../assets/Icons/seo.svg" alt="SEO">
           </div>
           <h3>Référencement naturel (SEO)</h3>
-          <p>Optimisation de votre site web pour les moteurs de recherche, stratégie de mots-clés, netlinking et création de contenu optimisé.</p>
+          <p>Stratégie SEO complète pour améliorer votre visibilité organique, attirer du trafic qualifié et générer des conversions durables.</p>
+          <ul class="expertise-features">
+            <li>Audit SEO approfondi</li>
+            <li>Optimisation technique</li>
+            <li>Stratégie de mots-clés ciblée</li>
+            <li>Netlinking de qualité</li>
+          </ul>
         </div>
         
         <div class="expertise-card">
@@ -96,23 +653,41 @@
             <img src="../assets/Icons/analytics.svg" alt="Analytics">
           </div>
           <h3>Analytics & Data</h3>
-          <p>Mise en place de tracking avancé, création de tableaux de bord personnalisés et analyse de données pour des décisions stratégiques.</p>
+          <p>Exploitation de vos données pour piloter votre stratégie digitale, comprendre vos utilisateurs et optimiser vos conversions.</p>
+          <ul class="expertise-features">
+            <li>Mise en place de GA4</li>
+            <li>Création de tableaux de bord</li>
+            <li>Suivi des KPIs pertinents</li>
+            <li>Recommandations data-driven</li>
+          </ul>
         </div>
         
         <div class="expertise-card">
           <div class="card-icon">
             <img src="../assets/Icons/website.svg" alt="Site Web">
           </div>
-          <h3>Sites Web WordPress</h3>
-          <p>Création et optimisation de sites web WordPress performants, responsive et optimisés pour la conversion et le référencement.</p>
+          <h3>Sites Web Performants</h3>
+          <p>Création et optimisation de sites web orientés conversion, responsive et optimisés pour le référencement.</p>
+          <ul class="expertise-features">
+            <li>UX/UI centrée utilisateur</li>
+            <li>Performance technique</li>
+            <li>Optimisation SEO intégrée</li>
+            <li>Parcours d'achat optimisé</li>
+          </ul>
         </div>
         
         <div class="expertise-card">
           <div class="card-icon">
             <img src="../assets/Icons/social.svg" alt="Social Media">
           </div>
-          <h3>Social Media</h3>
-          <p>Gestion de vos réseaux sociaux, élaboration de stratégies de contenu engageantes et création de campagnes publicitaires ciblées.</p>
+          <h3>Social Media Marketing</h3>
+          <p>Stratégie social media engageante pour développer votre communauté, renforcer votre image de marque et générer des leads.</p>
+          <ul class="expertise-features">
+            <li>Stratégie de contenu adaptée</li>
+            <li>Gestion des communautés</li>
+            <li>Campagnes publicitaires ciblées</li>
+            <li>Analyse des performances</li>
+          </ul>
         </div>
         
         <div class="expertise-card">
@@ -120,50 +695,68 @@
             <img src="../assets/Icons/strategy.svg" alt="Stratégie">
           </div>
           <h3>Stratégie digitale</h3>
-          <p>Conseil et accompagnement dans la définition de votre stratégie marketing digital globale pour atteindre vos objectifs business.</p>
+          <p>Vision globale et cohérente de votre présence en ligne, alignée avec vos objectifs business et votre positionnement.</p>
+          <ul class="expertise-features">
+            <li>Audit digital complet</li>
+            <li>Définition d'objectifs SMART</li>
+            <li>Plan d'action personnalisé</li>
+            <li>Suivi et optimisation</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Approach Section -->
-  <section class="approach-section">
+  <!-- Process Section -->
+  <section class="process-section">
     <div class="container">
       <div class="section-header">
-        <h2>Ma méthodologie</h2>
-        <p>Une approche structurée pour des résultats mesurables</p>
+        <h2>Comment je travaille</h2>
+        <p>Une méthodologie éprouvée en 4 étapes pour des résultats garantis</p>
       </div>
       
-      <div class="approach-steps">
-        <div class="approach-step">
+      <div class="process-steps">
+        <div class="process-step">
           <div class="step-number">1</div>
           <div class="step-content">
             <h3>Audit & Analyse</h3>
-            <p>Étude approfondie de votre écosystème digital, identification des opportunités et définition des objectifs clés.</p>
+            <p>Analyse approfondie de votre écosystème digital, votre marché et votre concurrence pour identifier les opportunités d'amélioration et définir une stratégie pertinente.</p>
+            <div class="step-deliverables">
+              <strong>Livrables :</strong> Rapport d'audit complet, analyse concurrentielle, identification des axes d'amélioration
+            </div>
           </div>
         </div>
         
-        <div class="approach-step">
+        <div class="process-step">
           <div class="step-number">2</div>
           <div class="step-content">
             <h3>Stratégie sur-mesure</h3>
-            <p>Élaboration d'une stratégie personnalisée basée sur vos objectifs, votre cible et votre secteur d'activité.</p>
+            <p>Élaboration d'une stratégie digitale personnalisée, adaptée à vos objectifs business, votre cible et votre budget, avec des KPIs clairs et mesurables.</p>
+            <div class="step-deliverables">
+              <strong>Livrables :</strong> Plan stratégique détaillé, calendrier d'actions, prévisions de résultats
+            </div>
           </div>
         </div>
         
-        <div class="approach-step">
+        <div class="process-step">
           <div class="step-number">3</div>
           <div class="step-content">
             <h3>Mise en œuvre</h3>
-            <p>Déploiement des actions définies dans la stratégie avec un suivi rigoureux et des optimisations continues.</p>
+            <p>Déploiement des actions définies dans la stratégie avec un suivi rigoureux, une communication transparente et des ajustements en temps réel.</p>
+            <div class="step-deliverables">
+              <strong>Livrables :</strong> Mise en place des outils, création des campagnes, implémentation des optimisations
+            </div>
           </div>
         </div>
         
-        <div class="approach-step">
+        <div class="process-step">
           <div class="step-number">4</div>
           <div class="step-content">
             <h3>Analyse & Optimisation</h3>
-            <p>Suivi des performances, reporting détaillé et ajustements stratégiques pour maximiser les résultats.</p>
+            <p>Suivi continu des performances, reporting détaillé et ajustements stratégiques pour maximiser les résultats et votre retour sur investissement.</p>
+            <div class="step-deliverables">
+              <strong>Livrables :</strong> Rapports de performance réguliers, recommandations d'optimisation, réunions de suivi
+            </div>
           </div>
         </div>
       </div>
@@ -174,58 +767,84 @@
   <section id="services" class="services-section">
     <div class="container">
       <div class="section-header">
-        <h2>Mes services</h2>
-        <p>Des formules adaptées à vos besoins et objectifs</p>
+        <h2>Mes offres de services</h2>
+        <p>Des formules adaptées à chaque besoin et chaque budget</p>
       </div>
       
       <div class="services-grid">
         <div class="service-card">
-          <h3>Gestion de campagnes</h3>
-          <div class="service-price">À partir de 800€/mois</div>
-          <ul class="service-features">
-            <li>Création et optimisation de campagnes publicitaires</li>
-            <li>Suivi et optimisation quotidienne</li>
-            <li>Reporting hebdomadaire et mensuel</li>
-            <li>Réunions stratégiques régulières</li>
-            <li>Recommandations d'optimisation</li>
-          </ul>
-          <a href="#contact" class="service-button">En savoir plus</a>
-        </div>
-        
-        <div class="service-card featured">
-          <div class="featured-tag">Populaire</div>
-          <h3>Stratégie digitale complète</h3>
-          <div class="service-price">Sur devis</div>
-          <ul class="service-features">
-            <li>Audit complet de votre présence digitale</li>
-            <li>Élaboration d'une stratégie personnalisée</li>
-            <li>SEO, SEA, Social Media, Content</li>
-            <li>Mise en place d'outils d'analyse</li>
-            <li>Accompagnement et suivi mensuel</li>
-          </ul>
-          <a href="#contact" class="service-button">En savoir plus</a>
-        </div>
-        
-        <div class="service-card">
-          <h3>Missions ponctuelles</h3>
-          <div class="service-price">À partir de 500€</div>
+          <div class="service-header">
+            <h3>Prestation ponctuelle</h3>
+            <div class="service-price">À partir de 500€</div>
+          </div>
+          <div class="service-description">
+            <p>Solution idéale pour répondre à un besoin spécifique ou lancer un projet digital rapidement.</p>
+          </div>
           <ul class="service-features">
             <li>Audit SEO, SEA ou Analytics</li>
+            <li>Mise en place de campagnes</li>
             <li>Formation personnalisée</li>
-            <li>Set-up complet de campagnes</li>
             <li>Optimisation de site web</li>
             <li>Consulting stratégique</li>
           </ul>
-          <a href="#contact" class="service-button">En savoir plus</a>
+          <div class="service-ideal">
+            <strong>Idéal pour :</strong> Startups, freelances, petites entreprises avec un besoin ponctuel
+          </div>
+          <a href="#audit" class="service-button">Demander un devis</a>
+        </div>
+        
+        <div class="service-card featured">
+          <div class="featured-tag">Recommandé</div>
+          <div class="service-header">
+            <h3>Accompagnement mensuel</h3>
+            <div class="service-price">À partir de 800€/mois</div>
+          </div>
+          <div class="service-description">
+            <p>Suivi régulier de votre stratégie digitale avec optimisations continues pour maximiser les performances.</p>
+          </div>
+          <ul class="service-features">
+            <li>Gestion complète des campagnes</li>
+            <li>Optimisation SEO continue</li>
+            <li>Reporting hebdomadaire et mensuel</li>
+            <li>Réunions stratégiques régulières</li>
+            <li>Support prioritaire</li>
+            <li>Recommandations d'optimisation</li>
+          </ul>
+          <div class="service-ideal">
+            <strong>Idéal pour :</strong> PME, e-commerces, entreprises en croissance
+          </div>
+          <a href="#audit" class="service-button">Demander un devis</a>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-header">
+            <h3>Stratégie digitale complète</h3>
+            <div class="service-price">Sur devis</div>
+          </div>
+          <div class="service-description">
+            <p>Solution complète pour transformer votre présence digitale et atteindre vos objectifs business.</p>
+          </div>
+          <ul class="service-features">
+            <li>Audit complet de votre écosystème</li>
+            <li>Stratégie personnalisée 360°</li>
+            <li>SEO, SEA, Social, Content, CRO</li>
+            <li>Mise en place d'outils d'analyse</li>
+            <li>Accompagnement stratégique</li>
+            <li>Formation de vos équipes</li>
+          </ul>
+          <div class="service-ideal">
+            <strong>Idéal pour :</strong> Entreprises établies, projets de transformation digitale
+          </div>
+          <a href="#audit" class="service-button">Demander un devis</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Results Section -->
-  <section class="results-section">
+  <section id="resultats" class="results-section">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header light-header">
         <h2>Résultats concrets</h2>
         <p>Des performances mesurables pour mes clients</p>
       </div>
@@ -233,23 +852,73 @@
       <div class="results-grid">
         <div class="result-card">
           <div class="result-number">+85%</div>
-          <div class="result-description">de trafic organique en moyenne après 6 mois d'optimisation SEO</div>
+          <div class="result-description">d'augmentation du trafic organique en moyenne après 6 mois d'optimisation SEO</div>
         </div>
         
         <div class="result-card">
           <div class="result-number">3.5x</div>
-          <div class="result-description">de retour sur investissement moyen pour les campagnes publicitaires</div>
+          <div class="result-description">de retour sur investissement moyen pour les campagnes publicitaires Google Ads</div>
         </div>
         
         <div class="result-card">
           <div class="result-number">+45%</div>
-          <div class="result-description">de taux de conversion après optimisation des sites web</div>
+          <div class="result-description">d'amélioration du taux de conversion après optimisation UX et CRO</div>
         </div>
         
         <div class="result-card">
-          <div class="result-number">+30</div>
-          <div class="result-description">clients satisfaits depuis 2022</div>
+          <div class="result-number">-25%</div>
+          <div class="result-description">de réduction du coût par acquisition grâce à l'optimisation des campagnes</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies Section -->
+  <section class="case-studies-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Études de cas</h2>
+        <p>Découvrez comment j'ai aidé mes clients à atteindre leurs objectifs</p>
+      </div>
+      
+      <div class="case-studies-slider">
+        <div class="case-study">
+          <div class="case-study-content">
+            <div class="case-study-header">
+              <div class="case-logo">
+                <img src="../assets/Images/client-logo1.png" alt="Client E-commerce">
+              </div>
+              <div class="case-category">E-commerce</div>
+            </div>
+            <h3>Multiplication par 3 des ventes en ligne en 4 mois</h3>
+            <p>Refonte complète de la stratégie d'acquisition et optimisation du parcours de conversion pour un e-commerce dans le secteur de la mode.</p>
+            <div class="case-results">
+              <div class="case-result">
+                <span class="result-value">+127%</span>
+                <span class="result-label">Trafic qualifié</span>
+              </div>
+              <div class="case-result">
+                <span class="result-value">+68%</span>
+                <span class="result-label">Taux de conversion</span>
+              </div>
+              <div class="case-result">
+                <span class="result-value">-32%</span>
+                <span class="result-label">Coût d'acquisition</span>
+              </div>
+            </div>
+            <a href="#" class="case-link">Voir l'étude complète <span>&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="case-studies-nav">
+        <button class="nav-prev" disabled>&larr;</button>
+        <div class="nav-dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <button class="nav-next">&rarr;</button>
       </div>
     </div>
   </section>
@@ -263,10 +932,10 @@
       </div>
       
       <div class="testimonial-slider">
-        <div class="testimonial-slide">
+        <div class="testimonial-slide active">
           <div class="testimonial-content">
             <div class="testimonial-rating">★★★★★</div>
-            <p>"Clément a su comprendre nos enjeux et mettre en place une stratégie digitale pertinente. Les résultats ont dépassé nos attentes avec un ROI de 300% sur nos campagnes."</p>
+            <p>"Clément a transformé notre stratégie digitale. En 3 mois, notre trafic a augmenté de 70% et notre ROI publicitaire a triplé. Sa connaissance des outils Google est impressionnante et ses recommandations sont toujours pertinentes."</p>
             <div class="testimonial-author">
               <img src="../assets/Images/testimonial1.jpg" alt="Avatar">
               <div>
@@ -280,7 +949,7 @@
         <div class="testimonial-slide">
           <div class="testimonial-content">
             <div class="testimonial-rating">★★★★★</div>
-            <p>"Un vrai professionnel qui a su transformer notre présence en ligne. Notre site est désormais bien positionné sur Google et nos leads ont augmenté de 45%."</p>
+            <p>"Un vrai professionnel qui a su comprendre nos enjeux business et proposer des solutions adaptées. Notre site est désormais bien positionné sur Google et nos leads ont augmenté de 45%. Je recommande vivement!"</p>
             <div class="testimonial-author">
               <img src="../assets/Images/testimonial2.jpg" alt="Avatar">
               <div>
@@ -294,7 +963,7 @@
         <div class="testimonial-slide">
           <div class="testimonial-content">
             <div class="testimonial-rating">★★★★★</div>
-            <p>"Clément a une approche à la fois stratégique et opérationnelle qui nous a permis d'optimiser tous nos canaux d'acquisition. Un partenaire de confiance pour notre développement."</p>
+            <p>"Clément a une approche à la fois stratégique et opérationnelle qui nous a permis d'optimiser tous nos canaux d'acquisition. Sa capacité à analyser les données et à en tirer des insights actionnables est un vrai plus. Un partenaire de confiance."</p>
             <div class="testimonial-author">
               <img src="../assets/Images/testimonial3.jpg" alt="Avatar">
               <div>
@@ -314,18 +983,207 @@
     </div>
   </section>
 
+  <!-- Free Audit Section -->
+  <section id="audit" class="audit-section">
+    <div class="container">
+      <div class="audit-content">
+        <div class="audit-text">
+          <h2>Obtenez un audit gratuit de votre présence digitale</h2>
+          <p>Où en est votre stratégie digitale ? Quels sont vos points forts et vos axes d'amélioration ? Demandez votre audit personnalisé et découvrez comment booster votre présence en ligne.</p>
+          
+          <div class="audit-benefits">
+            <div class="audit-benefit">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <strong>Analyse SEO complète</strong>
+                <span>Identification des optimisations techniques, sémantiques et structurelles</span>
+              </div>
+            </div>
+            <div class="audit-benefit">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <strong>Audit de vos campagnes publicitaires</strong>
+                <span>Évaluation de la performance et recommandations d'optimisation</span>
+              </div>
+            </div>
+            <div class="audit-benefit">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <strong>Analyse UX et conversion</strong>
+                <span>Identification des freins à la conversion et opportunités d'amélioration</span>
+              </div>
+            </div>
+            <div class="audit-benefit">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <strong>Recommandations personnalisées</strong>
+                <span>Plan d'action concret pour améliorer vos performances</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="audit-guarantee">
+            <img src="../assets/Images/guarantee-badge.png" alt="Garantie satisfaction">
+            <div class="guarantee-text">
+              <strong>Garantie 100% satisfaction</strong>
+              <span>Sans engagement. Valeur réelle : 500€</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="audit-form-container">
+          <form class="audit-form" id="auditForm" method="POST" action="https://formsubmit.co/clem.rondepierre.cr@gmail.com">
+            <!-- Paramètres FormSubmit.co -->
+            <input type="hidden" name="_subject" value="Nouvelle demande d'audit gratuit">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://clement-rondepierre.fr/merci.html">
+            
+            <h3>Demandez votre audit gratuit</h3>
+            <p>Je vous recontacterai sous 24h pour planifier notre premier échange</p>
+            
+            <div class="form-group">
+              <label for="name">Nom et prénom*</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email professionnel*</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Téléphone*</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="company">Entreprise*</label>
+              <input type="text" id="company" name="company" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="website">Site web*</label>
+              <input type="url" id="website" name="website" required>
+            </div>
+            
+            <div class="form-group full-width">
+              <label for="challenge">Votre principal défi digital actuel*</label>
+              <textarea id="challenge" name="challenge" rows="3" required></textarea>
+            </div>
+            
+            <div class="form-group checkbox-group">
+              <input type="checkbox" id="consent" name="consent" value="accepted" required>
+              <label for="consent">J'accepte de recevoir mon audit gratuit et d'être contacté par Clément Rondepierre*</label>
+            </div>
+            
+            <button type="submit" class="submit-button">Recevoir mon audit gratuit</button>
+            
+            <p class="form-note">* Champs obligatoires | Vos données ne seront jamais vendues à des tiers</p>
+          </form>
+          <div id="form-success" class="form-success" style="display: none;">
+            <img src="../assets/Images/success-icon.png" alt="Succès">
+            <h3>Merci pour votre demande !</h3>
+            <p>J'ai bien reçu votre demande d'audit gratuit et je vous contacterai dans les 24 heures pour planifier notre premier échange.</p>
+            <p>À très vite !</p>
+            <p class="success-signature">Clément Rondepierre</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Questions fréquentes</h2>
+        <p>Tout ce que vous devez savoir pour démarrer</p>
+      </div>
+      
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Comment fonctionne l'audit gratuit ?</h3>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Après avoir rempli le formulaire, je vous contacte sous 24h pour planifier un premier appel de 30 minutes où nous discutons de vos objectifs. Suite à cet échange, j'analyse votre présence digitale et vous livre sous 5 jours ouvrés un rapport d'audit complet avec mes recommandations personnalisées. Nous planifions ensuite un second appel pour discuter des résultats et des axes d'amélioration identifiés.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Quels types d'entreprises accompagnez-vous ?</h3>
+            <span class="faq-toggle">+</span></div>
+          <div class="faq-answer">
+            <p>J'accompagne des entreprises de toutes tailles, des startups aux PME établies, dans des secteurs variés (e-commerce, services B2B, industries spécialisées...). Mon approche est toujours adaptée à votre contexte, vos objectifs et votre budget. Je privilégie les collaborations où je peux apporter une réelle valeur ajoutée et générer un ROI mesurable pour mes clients.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Combien coûtent vos services ?</h3>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Mes tarifs varient en fonction de l'ampleur du projet, de la complexité des actions à mettre en place et de la durée de notre collaboration. Je propose des formules à partir de 500€ pour des missions ponctuelles et des accompagnements mensuels à partir de 800€. Chaque devis est personnalisé et détaillé pour répondre précisément à vos besoins. L'objectif est toujours de garantir un retour sur investissement optimal.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Comment mesurez-vous les résultats ?</h3>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Je mets en place des KPIs précis dès le début de notre collaboration, en fonction de vos objectifs business. Un reporting régulier (hebdomadaire et mensuel) vous permet de suivre l'évolution des performances. Je mesure généralement : le trafic organique et payant, les taux de conversion, le coût par acquisition, le ROI des campagnes, l'engagement sur les réseaux sociaux et tout autre indicateur pertinent pour votre activité.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Quelle est la durée minimale d'engagement ?</h3>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Pour les missions ponctuelles, il n'y a pas d'engagement sur la durée. Pour les accompagnements mensuels, je recommande un engagement initial de 3 mois minimum pour avoir le temps de mettre en place la stratégie, d'effectuer les optimisations nécessaires et de commencer à voir des résultats significatifs. Ensuite, nos collaborations fonctionnent avec un préavis d'un mois, sans engagement de longue durée.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Travaillez-vous avec des partenaires ?</h3>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Pour garantir des prestations de qualité dans tous les domaines du marketing digital, je collabore avec un réseau de partenaires experts (développeurs, graphistes, rédacteurs, vidéastes) que je peux mobiliser en fonction des besoins de votre projet. Je reste votre interlocuteur unique et coordonne l'ensemble des actions pour assurer la cohérence de votre stratégie digitale.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- About Section -->
   <section id="about" class="about-section">
     <div class="container">
       <div class="about-content">
         <div class="about-image">
           <img src="../assets/Images/Photo 2.png" alt="Clément Rondepierre">
+          <div class="about-certifications">
+            <img src="../assets/Images/google-analytics.png" alt="Google Analytics Certified">
+            <img src="../assets/Images/google-ads.png" alt="Google Ads Certified">
+            <img src="../assets/Images/hubspot.png" alt="HubSpot Certified">
+          </div>
         </div>
         <div class="about-text">
-          <h2>À propos</h2>
-          <p>Freelance en marketing digital depuis 2022, j'accompagne les entreprises dans l'optimisation de leur présence en ligne et l'accélération de leur croissance digitale.</p>
-          <p>Mon parcours chez l'AFM Téléthon et Galileo Global Education m'a permis de développer une expertise pointue dans le domaine du marketing digital, de l'analyse de données et de l'optimisation de la performance.</p>
-          <p>Je m'appuie sur une approche data-driven et orientée résultats pour élaborer des stratégies digitales sur-mesure qui répondent aux objectifs et aux enjeux spécifiques de chaque entreprise.</p>
+          <h2>À propos de moi</h2>
+          <p>Expert en marketing digital, j'accompagne les entreprises dans l'optimisation de leur présence en ligne et l'accélération de leur croissance depuis 2022.</p>
+          
+          <p>Mes expériences chez l'<strong>AFM Téléthon</strong> et <strong>Galileo Global Education</strong> m'ont permis de développer une expertise pointue dans les domaines du marketing digital, de l'analyse de données et de l'optimisation des conversions.</p>
+          
+          <p>Ma philosophie : une approche data-driven et orientée résultats, où chaque décision est basée sur des données concrètes. Je considère que le marketing digital n'est pas une fin en soi, mais un moyen d'atteindre vos objectifs business.</p>
+          
           <div class="about-stats">
             <div class="stat">
               <div class="stat-number">5+</div>
@@ -336,48 +1194,30 @@
               <div class="stat-label">Clients satisfaits</div>
             </div>
             <div class="stat">
-              <div class="stat-number">10+</div>
+              <div class="stat-number">12+</div>
               <div class="stat-label">Certifications</div>
             </div>
           </div>
-          <a href="../cv.html" class="about-button">Voir mon CV complet</a>
+          
+          <div class="about-buttons">
+            <a href="../cv.html" class="about-button">Voir mon CV complet</a>
+            <a href="https://linkedin.com/in/clement-rondepierre" target="_blank" class="about-button linkedin-button">
+              <img src="../assets/Icons/linkedin.svg" alt="LinkedIn">
+              Me suivre sur LinkedIn
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section id="contact" class="cta-section">
+  <section class="final-cta-section">
     <div class="container">
       <div class="cta-content">
-        <h2>Prêt à booster votre présence digitale ?</h2>
-        <p>Contactez-moi pour un audit gratuit et discutons de votre projet !</p>
-        <form class="contact-form">
-          <div class="form-group">
-            <input type="text" placeholder="Nom et prénom" required>
-          </div>
-          <div class="form-group">
-            <input type="email" placeholder="Email" required>
-          </div>
-          <div class="form-group">
-            <input type="tel" placeholder="Téléphone">
-          </div>
-          <div class="form-group">
-            <select required>
-              <option value="" disabled selected>Service qui vous intéresse</option>
-              <option value="sea">Acquisition payante (SEA)</option>
-              <option value="seo">Référencement naturel (SEO)</option>
-              <option value="analytics">Analytics & Data</option>
-              <option value="website">Sites Web WordPress</option>
-              <option value="social">Social Media</option>
-              <option value="strategy">Stratégie digitale</option>
-            </select>
-          </div>
-          <div class="form-group full-width">
-            <textarea placeholder="Votre projet en quelques mots" rows="4" required></textarea>
-          </div>
-          <button type="submit" class="submit-button">Envoyer ma demande</button>
-        </form>
+        <h2>Prêt à transformer votre stratégie digitale ?</h2>
+        <p>Ne laissez pas passer l'opportunité d'optimiser votre présence en ligne et de générer plus de résultats.</p>
+        <a href="#audit" class="cta-button">Obtenir mon audit gratuit</a>
       </div>
     </div>
   </section>
@@ -388,7 +1228,7 @@
       <div class="footer-content">
         <div class="footer-info">
           <div class="footer-logo">Clément Rondepierre</div>
-          <p>Freelance en marketing digital</p>
+          <p>Expert en marketing digital</p>
           <div class="footer-contact">
             <p><strong>Email:</strong> <a href="mailto:clem.rondepierre.cr@gmail.com">clem.rondepierre.cr@gmail.com</a></p>
             <p><strong>Téléphone:</strong> <a href="tel:+33766489982">07 66 48 99 82</a></p>
@@ -400,10 +1240,10 @@
           <ul>
             <li><a href="#expertises">Expertises</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="#resultats">Résultats</a></li>
+            <li><a href="#audit">Audit Gratuit</a></li>
             <li><a href="#about">À propos</a></li>
-            <li><a href="#contact">Contact</a></li>
             <li><a href="../cv.html">CV</a></li>
-            <li><a href="../index.html">CVgle</a></li>
           </ul>
         </div>
         <div class="footer-social">
@@ -423,11 +1263,275 @@
       </div>
       <div class="footer-bottom">
         <p>&copy; 2025 Clément Rondepierre - Tous droits réservés</p>
+        <div class="footer-legal">
+          <a href="#">Mentions légales</a>
+          <a href="#">Politique de confidentialité</a>
+        </div>
       </div>
     </div>
   </footer>
 
+  <!-- Popup Audit (apparaît après 30s ou avant de quitter la page) -->
+  <div class="popup-overlay" id="auditPopup" style="opacity: 0; visibility: hidden;">
+    <div class="popup-container">
+      <button class="popup-close">&times;</button>
+      <div class="popup-content">
+        <div class="popup-header">
+          <h3>🚀 Boostez votre visibilité en ligne</h3>
+          <p>Obtenez votre audit digital gratuit (valeur 500€)</p>
+        </div>
+        <div class="popup-body">
+          <p>Découvrez les optimisations qui feront décoller vos performances :</p>
+          <ul class="popup-benefits">
+            <li>Analyse SEO complète</li>
+            <li>Audit de vos campagnes</li>
+            <li>Analyse UX et conversion</li>
+            <li>Recommandations personnalisées</li>
+          </ul>
+          <form class="popup-form" action="https://formsubmit.co/clem.rondepierre.cr@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Nouvelle demande d'audit (depuis popup)">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://clement-rondepierre.fr/merci.html">
+            <input type="email" name="email" placeholder="Votre email professionnel*" required>
+            <input type="hidden" name="source" value="popup">
+            <button type="submit">Obtenir mon audit gratuit</button>
+          </form>
+          <p class="popup-note">Sans engagement. Résultats sous 5 jours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<script type="module" src="./dist/assets/index-OkrR8lRX.js"></script>
+
+  <!-- Scripts -->
   <script>
+// Script corrigé pour assurer la visibilité des badges
+document.addEventListener('DOMContentLoaded', function() {
+  // Sélectionner tous les badges
+  const badges = document.querySelectorAll('.floating-badge');
+  
+  // S'assurer que le conteneur a une hauteur suffisante
+  const badgesContainer = document.querySelector('.dashboard-badges-container');
+  if (badgesContainer) {
+    // Positionner correctement le conteneur
+    if (window.innerWidth > 992) {
+      // Mode desktop - badges en absolu autour du dashboard
+      badgesContainer.style.position = 'absolute';
+      badgesContainer.style.inset = '0';
+      badgesContainer.style.height = 'auto';
+      badgesContainer.style.zIndex = '20';
+    } else {
+      // Mode mobile - badges alignés horizontalement
+      badgesContainer.style.height = 'auto';
+      badgesContainer.style.marginTop = '20px';
+      badgesContainer.style.display = 'flex';
+      badgesContainer.style.flexWrap = 'wrap';
+      badgesContainer.style.justifyContent = 'center';
+      badgesContainer.style.gap = '10px';
+    }
+  }
+  
+  // Assurer que le conteneur des badges est correctement positionné
+  const heroImage = document.querySelector('.hero-image');
+  const dashboardContainer = document.querySelector('.dashboard-container');
+  
+  if (heroImage && badgesContainer && dashboardContainer) {
+    // Positionner le conteneur de badges à l'intérieur du conteneur du dashboard
+    if (badgesContainer.parentElement !== dashboardContainer.parentElement) {
+      heroImage.insertBefore(badgesContainer, dashboardContainer);
+    }
+  }
+  
+  // Rendre les badges visibles immédiatement
+  badges.forEach((badge, index) => {
+    badge.style.opacity = '1';
+    badge.style.transform = 'translateY(0)';
+    
+    // Ajouter un délai différent pour chaque badge
+    badge.style.animationDelay = `${index * 0.3}s`;
+  });
+  
+  // Fonction pour ajuster la position des badges en mode responsive
+  function adjustBadgesPosition() {
+    if (!badgesContainer) return;
+    
+    if (window.innerWidth <= 992) {
+      // En mode mobile, transformer en flex horizontal
+      badgesContainer.style.position = 'relative';
+      badgesContainer.style.height = 'auto';
+      badgesContainer.style.marginTop = '20px';
+      badgesContainer.style.display = 'flex';
+      badgesContainer.style.flexWrap = 'wrap';
+      badgesContainer.style.justifyContent = 'center';
+      badgesContainer.style.gap = '10px';
+      
+      // Ajuster les badges pour qu'ils ne soient plus en position absolue
+      badges.forEach(badge => {
+        badge.style.position = 'relative';
+        badge.style.top = 'auto';
+        badge.style.left = 'auto';
+        badge.style.right = 'auto';
+        badge.style.bottom = 'auto';
+        badge.style.margin = '5px';
+      });
+    } else {
+      // En mode desktop, revenir au positionnement absolu
+      badgesContainer.style.position = 'absolute';
+      badgesContainer.style.inset = '0';
+      badgesContainer.style.display = 'block';
+      badgesContainer.style.margin = '0';
+      
+      // Remettre les positions spécifiques pour chaque badge
+      badges.forEach(badge => {
+        badge.style.position = 'absolute';
+        badge.style.margin = '0';
+        
+        // Positions par défaut si les classes ne sont pas définies
+        if (badge.classList.contains('google-analytics')) {
+          badge.style.top = '15%';
+          badge.style.left = '-40px';
+          badge.style.right = 'auto';
+          badge.style.bottom = 'auto';
+        } else if (badge.classList.contains('google-ads')) {
+          badge.style.top = '30%';
+          badge.style.right = '-30px';
+          badge.style.left = 'auto';
+          badge.style.bottom = 'auto';
+        } else if (badge.classList.contains('seo')) {
+          badge.style.bottom = '25%';
+          badge.style.left = '-35px';
+          badge.style.top = 'auto';
+          badge.style.right = 'auto';
+        } else if (badge.classList.contains('meta')) {
+          badge.style.bottom = '35%';
+          badge.style.right = '-25px';
+          badge.style.top = 'auto';
+          badge.style.left = 'auto';
+        } else if (badge.classList.contains('data-studio')) {
+          badge.style.top = '50%';
+          badge.style.left = '20px';
+          badge.style.right = 'auto';
+          badge.style.bottom = 'auto';
+        }
+      });
+    }
+  }
+  
+  // Exécuter la fonction au chargement et au redimensionnement
+  adjustBadgesPosition();
+  window.addEventListener('resize', adjustBadgesPosition);
+});
+
+    // Animation de l'effet 3D au mouvement de la souris et animations des badges
+document.addEventListener('DOMContentLoaded', function() {
+  const dashboardContainer = document.querySelector('.dashboard-container');
+  const dashboardCard = document.getElementById('dashboard-card');
+  const floatingBadges = document.querySelectorAll('.floating-badge');
+  
+  if (dashboardContainer && dashboardCard) {
+    // Effet 3D au mouvement de la souris
+    dashboardContainer.addEventListener('mousemove', function(e) {
+      const rect = dashboardContainer.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const rotateY = ((x / rect.width) - 0.5) * 15;
+      const rotateX = ((y / rect.height) - 0.5) * -15;
+      
+      dashboardCard.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    
+    dashboardContainer.addEventListener('mouseleave', function() {
+      dashboardCard.style.transform = 'perspective(1200px) rotateX(3deg) rotateY(5deg)';
+    });
+    
+    // Animation d'entrée des badges
+// Script pour animer les badges avec un délai
+document.addEventListener('DOMContentLoaded', function() {
+    const badges = document.querySelectorAll('.floating-badge');
+    
+    // Animer chaque badge avec un délai
+    badges.forEach((badge, index) => {
+      setTimeout(() => {
+        badge.classList.add('animated');
+        badge.style.animationDelay = `${index * 0.3}s`;
+      }, 500 + index * 200);
+    });
+    
+    // Fonction pour ajuster la position des badges en mode responsive
+    function adjustBadgesPosition() {
+      const dashboardContainer = document.querySelector('.dashboard-container');
+      const badgesContainer = document.querySelector('.dashboard-badges-container');
+      
+      if (window.innerWidth <= 992) {
+        // En mode mobile, insérer les badges après le dashboard
+        if (dashboardContainer && badgesContainer) {
+          dashboardContainer.after(badgesContainer);
+          badgesContainer.style.height = 'auto';
+        }
+      } else {
+        // En mode desktop, les badges sont positionnés en absolu autour du dashboard
+        if (badgesContainer) {
+          const heroImage = document.querySelector('.hero-image');
+          if (heroImage) {
+            heroImage.prepend(badgesContainer);
+            badgesContainer.style.height = '0';
+          }
+        }
+      }
+    }
+    
+    // Ajuster les positions au chargement et au redimensionnement
+    adjustBadgesPosition();
+    window.addEventListener('resize', adjustBadgesPosition);
+  });
+    
+    // Animation des compteurs
+    const animateCounter = (elementId, startValue, endValue, duration, suffix = '') => {
+      const element = document.getElementById(elementId);
+      if (!element) return;
+      
+      const startTime = performance.now();
+      
+      const updateCounter = (timestamp) => {
+        const elapsedTime = timestamp - startTime;
+        const progress = Math.min(elapsedTime / duration, 1);
+        
+        let value;
+        if (suffix === '%' || suffix === 'x') {
+          // Pour les pourcentages et multiplicateurs
+          value = (startValue + progress * (endValue - startValue)).toFixed(1);
+        } else {
+          // Pour les entiers
+          value = Math.floor(startValue + progress * (endValue - startValue));
+        }
+        
+        element.textContent = suffix === '€' ? `${value}€` : `${suffix}${value}`;
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        }
+      };
+      
+      requestAnimationFrame(updateCounter);
+    };
+    
+    // Lancer les animations des compteurs avec délai
+    setTimeout(() => {
+      animateCounter('metric-traffic', 0, 3800, 2000, '+');
+      setTimeout(() => {
+        animateCounter('metric-conversion', 0, 4.2, 2000, '');
+      }, 300);
+      setTimeout(() => {
+        animateCounter('metric-cost', 22, 10, 2000, '');
+      }, 600);
+      setTimeout(() => {
+        animateCounter('metric-roi', 0, 3.8, 2000, '');
+      }, 900);
+    }, 800);
+  }
+});
     // Mobile menu toggle
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const navLinks = document.querySelector('.nav-links');
@@ -437,8 +1541,31 @@
       menuToggle.classList.toggle('active');
     });
     
+    // FAQ toggle
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const faqItem = question.parentElement;
+        const faqToggle = question.querySelector('.faq-toggle');
+        const isOpen = faqItem.classList.contains('active');
+        
+        // Fermer tous les items
+        document.querySelectorAll('.faq-item').forEach(item => {
+          item.classList.remove('active');
+          item.querySelector('.faq-toggle').textContent = '+';
+        });
+        
+        // Ouvrir l'item cliqué s'il n'était pas déjà ouvert
+        if (!isOpen) {
+          faqItem.classList.add('active');
+          faqToggle.textContent = '-';
+        }
+      });
+    });
+    
     // Testimonial slider
-    const dots = document.querySelectorAll('.dot');
+    const dots = document.querySelectorAll('.testimonial-dots .dot');
     const slides = document.querySelectorAll('.testimonial-slide');
     
     dots.forEach((dot, index) => {
@@ -492,7 +1619,344 @@
         }
       });
     });
+    
+    // Popup display logic
+    const popup = document.getElementById('auditPopup');
+    const closePopup = document.querySelector('.popup-close');
+    
+    // Function to show popup
+    function showPopup() {
+      // Vérifier si l'utilisateur a déjà fermé le popup dans cette session
+      if (!sessionStorage.getItem('popupClosed')) {
+        popup.style.opacity = '1';
+        popup.style.visibility = 'visible';
+        popup.classList.add('active');
+      }
+    }
+    
+    // Show popup after 30 seconds
+    setTimeout(showPopup, 30000);
+    
+    // Exit intent popup (when mouse leaves top of page)
+    document.addEventListener('mouseleave', (e) => {
+      if (e.clientY < 0 && !popup.classList.contains('active') && !sessionStorage.getItem('popupClosed')) {
+        showPopup();
+      }
+    });
+    
+    // Close popup
+    closePopup.addEventListener('click', () => {
+      popup.style.opacity = '0';
+      popup.style.visibility = 'hidden';
+      popup.classList.remove('active');
+      sessionStorage.setItem('popupClosed', 'true');
+    });
+    
+    // Also close popup when clicking outside
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        popup.style.opacity = '0';
+        popup.style.visibility = 'hidden';
+        popup.classList.remove('active');
+        sessionStorage.setItem('popupClosed', 'true');
+      }
+    });
+    
+    // Popup form navigation to audit section
+    document.querySelector('.popup-form').addEventListener('click', function(e) {
+      if (e.target.tagName === 'BUTTON') {
+        // Ce code ne sera exécuté qu'après la soumission réussie
+        setTimeout(() => {
+          const auditSection = document.getElementById('audit');
+          if (auditSection) {
+            window.scrollTo({
+              top: auditSection.offsetTop - 100,
+              behavior: 'smooth'
+            });
+          }
+        }, 100);
+      }
+    });
+    
+    // Tracking des conversions et événements
+    const trackEvent = (eventName, eventProperties = {}) => {
+      // Envoyer à Google Analytics
+      if (window.gtag) {
+        gtag('event', eventName, eventProperties);
+      }
+      
+      // Envoyer à Google Tag Manager
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          'event': eventName,
+          ...eventProperties
+        });
+      }
+      
+      console.log('Event tracked:', eventName, eventProperties);
+    };
+
+    // Suivi des clics sur les CTAs principaux
+    document.querySelectorAll('.primary-button, .service-button, .cta-button').forEach(button => {
+      button.addEventListener('click', function() {
+        trackEvent('cta_click', {
+          'cta_text': this.textContent.trim(),
+          'cta_location': this.closest('section')?.id || 'unknown'
+        });
+      });
+    });
   </script>
+
+  <!-- Script pour la page de merci -->
+  <script>
+    // Vérifier si nous sommes sur la page de remerciement
+    if (window.location.pathname.includes('merci.html') || window.location.pathname.includes('thank-you.html')) {
+      document.body.innerHTML = `
+        <div class="thank-you-page">
+          <div class="thank-you-container">
+            <div class="thank-you-header">
+              <a href="index.html" class="logo">Clément Rondepierre</a>
+            </div>
+            <div class="thank-you-content">
+              <div class="thank-you-icon">✓</div>
+              <h1>Merci pour votre demande !</h1>
+              <p>J'ai bien reçu votre demande d'audit gratuit et je vous contacterai dans les 24 heures pour planifier notre premier échange.</p>
+              <p class="message-perso">Je prépare déjà les points clés que nous pourrons aborder ensemble pour améliorer votre présence digitale.</p>
+              <div class="thank-you-steps">
+                <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-text">
+                    <h3>Validation de votre demande</h3>
+                    <p>Je vais examiner votre site web pour préparer notre échange</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-text">
+                    <h3>Premier échange</h3>
+                    <p>Nous discuterons de vos objectifs et de vos défis actuels</p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-text">
+                    <h3>Remise de l'audit</h3>
+                    <p>Je vous livrerai un rapport détaillé avec des recommandations concrètes</p>
+                  </div>
+                </div>
+              </div>
+              <div class="thank-you-cta">
+                <a href="index.html" class="return-button">Retour à l'accueil</a>
+                <div class="social-suggestion">
+                  <p>En attendant, vous pouvez me suivre sur LinkedIn :</p>
+                  <a href="https://linkedin.com/in/clement-rondepierre" target="_blank" class="linkedin-button">
+                    <img src="../assets/Icons/linkedin.svg" alt="LinkedIn">
+                    Me suivre sur LinkedIn
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="thank-you-footer">
+              <p>© 2025 Clément Rondepierre - Tous droits réservés</p>
+            </div>
+          </div>
+        </div>
+        <style>
+          .thank-you-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa, #fff);
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+          }
+          
+          .thank-you-container {
+            max-width: 800px;
+            margin: 0 auto;
+            width: 90%;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+          }
+          
+          .thank-you-header {
+            margin-bottom: 60px;
+          }
+          
+          .thank-you-content {
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: fadeIn 0.8s ease-out;
+          }
+          
+          .thank-you-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 40px;
+            box-shadow: 0 5px 15px rgba(52, 168, 83, 0.3);
+          }
+          
+          .thank-you-content h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--text-color);
+          }
+          
+          .thank-you-content p {
+            font-size: 18px;
+            color: var(--dark-gray);
+            max-width: 600px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+          }
+          
+          .message-perso {
+            font-style: italic;
+            margin-bottom: 40px;
+          }
+          
+          .thank-you-steps {
+            margin: 40px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+          }
+          
+          .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            text-align: left;
+          }
+          
+          .step-number {
+            width: 36px;
+            height: 36px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+          }
+          
+          .step-text h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--text-color);
+          }
+          
+          .step-text p {
+            font-size: 16px;
+            margin: 0;
+          }
+          
+          .thank-you-cta {
+            margin-top: 40px;
+          }
+          
+          .return-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+          }
+          
+          .return-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(26, 115, 232, 0.3);
+            text-decoration: none;
+            color: white;
+          }
+          
+          .social-suggestion {
+            margin-top: 30px;
+          }
+          
+          .linkedin-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0077b5;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-weight: 500;
+            transition: all 0.3s;
+          }
+          
+          .linkedin-button img {
+            width: 18px;
+            height: 18px;
+            filter: brightness(0) invert(1);
+          }
+          
+          .linkedin-button:hover {
+            background: #005885;
+            text-decoration: none;
+            color: white;
+          }
+          
+          .thank-you-footer {
+            margin-top: 60px;
+            text-align: center;
+            color: var(--dark-gray);
+            font-size: 14px;
+          }
+          
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          
+          @media (max-width: 768px) {
+            .thank-you-content h1 {
+              font-size: 28px;
+            }
+            
+            .thank-you-content p {
+              font-size: 16px;
+            }
+            
+            .thank-you-steps {
+              margin: 30px 0;
+            }
+          }
+        </style>
+      `;
+    }
+  </script>
+
+  <!-- Style pour le formulaire de succès -->
+  
+
+<!-- Script React --><script type="module" src="../assets/js/marketing-dashboard.js"></script>
+
+
+
   <script src="responsive-script.js"></script>
+  <script type="module" src="./dist/assets/main.js"></script>
 </body>
 </html>
+

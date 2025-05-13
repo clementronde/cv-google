@@ -37,6 +37,7 @@ body {
   align-items: center;
 }
 
+/* Fix pour éviter "À propos" sur deux lignes */
 .left-links a,
 .right-links a {
   padding: 0 8px;
@@ -44,6 +45,7 @@ body {
   color: #202124;
   text-decoration: none;
   line-height: 24px;
+  white-space: nowrap; /* Empêche le retour à la ligne */
 }
 
 .left-links a:hover,
@@ -51,6 +53,7 @@ body {
   text-decoration: underline;
 }
 
+/* Support pour l'image de profil */
 .profile-icon {
   width: 32px;
   height: 32px;
@@ -58,6 +61,16 @@ body {
   border-radius: 50%;
   margin-left: 12px;
   cursor: pointer;
+  overflow: hidden; /* Pour l'image de profil */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ===== CENTRE ===== */
@@ -66,9 +79,8 @@ body {
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
-  padding-bottom: 100px;
-  max-height: 290px;
-  margin-top: calc(100vh - 660px);
+  padding-bottom: 150px; /* Plus d'espace pour le footer */
+  margin-top: 12vh; /* Position adaptative au lieu de calcul fixe */
 }
 
 .logo-google {
@@ -83,13 +95,15 @@ body {
 
 /* ===== SEARCH BOX ===== */
 .search-box {
-  width: 100%;
+  width: 90%;
   max-width: 584px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .search-input {
-  position: relative;
   width: 100%;
   margin: 0 auto;
 }
@@ -149,10 +163,16 @@ body {
   gap: 12px;
 }
 
+/* Correction pour les boutons */
 .buttons {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 28px;
+  width: 100%; /* Prendre toute la largeur disponible pour centrer */
+  max-width: 584px; /* Même largeur que la barre de recherche */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .buttons button {
@@ -167,6 +187,7 @@ body {
   height: 36px;
   min-width: 54px;
   cursor: pointer;
+  flex: 0 0 auto; /* Ne pas étirer les boutons */
 }
 
 .buttons button:hover {
@@ -183,6 +204,7 @@ body {
   font-size: 14px;
   background: #f2f2f2;
   color: #70757a;
+  z-index: 10; /* S'assurer qu'il est au-dessus du contenu */
 }
 
 .footer-top {
@@ -223,6 +245,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 15px;
+  white-space: nowrap; /* Empêcher le retour à la ligne */
 }
 
 /* Responsive */
@@ -249,7 +272,7 @@ body {
 @media (max-width: 650px) {
   .center-container {
     margin-top: 10vh;
-    padding-bottom: 50px;
+    padding-bottom: 180px; /* Plus d'espace pour le footer sur mobile */
   }
   
   .logo-google {
@@ -270,10 +293,24 @@ body {
     flex-wrap: wrap;
     justify-content: center;
   }
+  
+  /* Correction pour garder les boutons sur une ligne sur mobile */
+  .buttons {
+    width: 100%;
+    max-width: 90%; /* Même largeur que la barre de recherche sur mobile */
+    justify-content: space-around; /* Espacement égal entre les boutons */
+  }
+  
+  .buttons button {
+    width: calc(50% - 8px); /* Chaque bouton prend la moitié de l'espace moins la marge */
+    min-width: 0;
+    padding: 0 8px;
+    margin: 0;
+    text-align: center;
+  }
 }
 
 /* Styles complémentaires pour la barre de recherche */
-
 .search-input {
   position: relative;
 }
@@ -356,14 +393,28 @@ body {
     padding: 0 40px;
   }
   
+  /* Correction pour les boutons sur petits écrans */
   .buttons {
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
+    flex-direction: row; /* Garder les boutons côte à côte */
+    width: 90%;
   }
   
   .buttons button {
-    width: 100%;
+    width: auto; /* Ne pas prendre toute la largeur */
     margin: 0;
+    padding: 0 8px;
+    font-size: 12px; /* Police encore plus petite sur très petits écrans */
+  }
+  
+  /* Ajustement de la navigation pour très petits écrans */
+  .top-nav {
+    padding: 6px 8px 0;
+  }
+  
+  .left-links a,
+  .right-links a {
+    padding: 0 6px;
+    margin: 0 2px;
+    font-size: 12px;
   }
 }

@@ -1,10 +1,16 @@
-/* === Global Styles === */
+/* === STYLES GLOBAUX === */
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   background: #fff;
   color: #202124;
+  overflow-x: hidden;
 }
 
 a {
@@ -17,7 +23,12 @@ a:hover {
   text-decoration: underline;
 }
 
-/* === Layout Grid Google-like === */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* === LAYOUT GRID GOOGLE-LIKE === */
 .grid-wrapper {
   display: grid;
   grid-template-columns: repeat(24, 1fr);
@@ -36,26 +47,7 @@ a:hover {
   padding-left: 1.5rem;
 }
 
-@media (max-width: 1024px) {
-  .grid-wrapper {
-    display: block;
-  }
-  .search-results-column,
-  .profile-card {
-    grid-column: auto;
-    width: 100%;
-  }
-  .profile-card {
-    margin-top: 2rem;
-    border-left: none;
-    border-top: 1px solid #dadce0;
-    padding-top: 1.5rem;
-  }
-}
-
-
-
-/* === Google Search Header === */
+/* === GOOGLE SEARCH HEADER === */
 .search-header {
   display: flex;
   align-items: center;
@@ -64,6 +56,7 @@ a:hover {
   background-color: #fff;
   z-index: 100;
   height: 64px;
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.1);
 }
 
 .logo-header {
@@ -144,35 +137,19 @@ a:hover {
   border-radius: 50%;
   background-color: #8ab4f8;
   cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
-@media (max-width: 768px) {
-  .search-header {
-    padding: 8px 16px;
-    height: auto;
-    flex-wrap: wrap;
-  }
-  
-  .search-center {
-    order: 3;
-    margin-left: 0;
-    margin-top: 10px;
-    width: 100%;
-  }
-  
-  .search-wrapper {
-    width: 100%;
-  }
-  
-  .search-tabs {
-    margin-left: 0;
-    padding-left: 8px;
-    overflow-x: auto;
-  }
+.profile-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* === Search Tabs === */
+/* === SEARCH TABS === */
 .search-tabs {
   border-bottom: 1px solid #e0e0e0;
   padding: 0 1.5rem;
@@ -181,11 +158,19 @@ a:hover {
 
 .search-tabs ul {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 1rem;
   list-style: none;
   padding: 0.75rem 0;
   margin: 0;
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch;
+}
+
+.search-tabs ul::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
 .search-tabs li a {
@@ -203,7 +188,7 @@ a:hover {
   font-weight: 500;
 }
 
-/* === Search Meta === */
+/* === SEARCH META === */
 .search-meta {
   font-size: 14px;
   color: #70757a;
@@ -215,7 +200,7 @@ a:hover {
   color: #202124;
 }
 
-/* === Result List === */
+/* === RESULT LIST === */
 .search-results-column {
   padding: 1rem 0;
 }
@@ -232,6 +217,14 @@ a:hover {
     "none link"
     "none description";
   column-gap: 16px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.search-item.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .item-image {
@@ -248,6 +241,8 @@ a:hover {
   font-size: 14px;
   color: #202124;
   margin-bottom: 6px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .item-url-path {
@@ -280,9 +275,11 @@ a:hover {
   color: #4d5156;
   margin-top: 2px;
   line-height: 1.5;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
-/* === Styles pour les compétences === */
+/* === STYLES POUR LES COMPÉTENCES === */
 .competence-category-item {
   margin-bottom: 1rem;
   padding-left: 88px; /* Retrait exact comme dans l'image */
@@ -307,7 +304,7 @@ a:hover {
   font-weight: normal;
 }
 
-/* === Profile Card === */
+/* === PROFILE CARD === */
 .profile-card {
   max-width: 350px;
   padding: 1.5rem 0;
@@ -480,7 +477,8 @@ a:hover {
   height: 150px;
   margin-bottom: 10px;
 }
-.voir-mes-projets{
+
+.voir-mes-projets {
   text-align: center;
 }
 
@@ -500,64 +498,7 @@ a:hover {
   text-decoration: none;
 }
 
-/* === Animations === */
-.search-item {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s, transform 0.5s;
-}
-
-.search-item.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* === Responsive === */
-@media (max-width: 768px) {
-  .search-header {
-    flex-wrap: wrap;
-    padding: 1rem;
-  }
-  
-  .search-center {
-    order: 3;
-    padding: 1rem 0 0;
-    max-width: none;
-    width: 100%;
-  }
-  
-  .search-tabs {
-    padding-left: 1rem;
-    overflow-x: auto;
-  }
-  
-  .search-meta {
-    padding-left: 1rem;
-  }
-  
-  .search-results-column {
-    padding: 1rem;
-  }
-  
-  .photo-map {
-    flex-direction: column;
-  }
-  
-  .photo-map img {
-    width: 100%;
-  }
-  
-  .certification-badges {
-    flex-wrap: wrap;
-  }
-  
-  .competence-category-item {
-    padding-left: 40px;
-  }
-}
-
-
-/* Styles pour l'accordéon style "Autres questions" de Google */
+/* === STYLES POUR L'ACCORDÉON === */
 .faq-section {
   max-width: 700px;
   margin: 30px auto;
@@ -569,6 +510,7 @@ a:hover {
   border-radius: 8px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  border: 1px solid #dadce0;
 }
 
 .faq-container h2 {
@@ -618,7 +560,7 @@ a:hover {
   padding: 0 16px;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-out;
+  transition: max-height 0.3s ease-out, padding 0.3s ease;
   background-color: #f8f9fa;
   color: #5f6368;
   font-size: 14px;
@@ -651,17 +593,6 @@ a:hover {
   cursor: pointer;
 }
 
-/* Animation de transition */
-.faq-answer {
-  transition: max-height 0.3s ease, padding 0.3s ease;
-}
-
-/* Adaptation au CV Google */
-.faq-container {
-  box-shadow: none;
-  border: 1px solid #dadce0;
-}
-
 /* Version pour l'intégration au CV */
 .cv-skills-accordion .faq-container {
   border: none;
@@ -684,14 +615,14 @@ a:hover {
   display: none;
 }
 
-
-/* ===== FOOTER ===== */
+/* === FOOTER === */
 .footer {
   bottom: 0;
   width: 100%;
   font-size: 14px;
   background: #f2f2f2;
   color: #70757a;
+  position: relative;
 }
 
 .footer-top {
@@ -732,9 +663,10 @@ a:hover {
   align-items: center;
   justify-content: center;
   padding: 15px;
+  white-space: nowrap;
 }
 
-/* Responsive */
+/* === RESPONSIVE === */
 @media (max-width: 1200px) {
   .footer-bottom {
     justify-content: space-evenly;
@@ -752,5 +684,252 @@ a:hover {
   
   .footer-right {
     order: 3;
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid-wrapper {
+    display: block;
+  }
+  
+  .search-results-column,
+  .profile-card {
+    grid-column: auto;
+    width: 100%;
+  }
+  
+  .profile-card {
+    margin-top: 2rem;
+    border-left: none;
+    border-top: 1px solid #dadce0;
+    padding-top: 1.5rem;
+    margin-left: 0;
+    padding-left: 1rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-header {
+    padding: 8px 10px;
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+  }
+  
+  .logo-header {
+    height: 20px;
+  }
+  
+  .search-center {
+    order: 3;
+    margin-left: 0;
+    margin-top: 8px;
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
+  
+  .search-wrapper {
+    width: 100%; /* Prendre toute la largeur */
+    max-width: 100%; /* Désactiver la limite de largeur */
+    margin: 0 auto;
+  }
+
+  .search-bar {
+    width: 100%;
+    padding-right: 70px; /* Espace pour les icônes */
+    box-sizing: border-box;
+    font-size: 14px; /* Police plus petite sur mobile */
+  }
+  
+  .search-tabs {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .search-meta {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .grid-wrapper {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  
+  .search-results-column {
+    padding: 1rem 12px;
+  }
+  
+  .photo-map {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  
+  .photo-map img {
+    width: 100%;
+    height: auto;
+    max-height: 120px;
+  }
+  
+  .certification-badges {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .certification-badge {
+    width: auto;
+    flex: 0 0 40%;
+  }
+  
+  .competence-category-item {
+    padding-left: 40px;
+  }
+  
+  .faq-question {
+    padding: 14px 12px;
+    font-size: 15px;
+  }
+  
+  .faq-answer {
+    font-size: 14px;
+  }
+  
+  .faq-answer ul {
+    padding-left: 20px;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-left,
+  .footer-right {
+    justify-content: center;
+    padding: 10px 0;
+  }
+  
+  .footer-center {
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .footer-top {
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-item {
+    grid-template-columns: 32px 1fr;
+    column-gap: 10px;
+  }
+  
+  .search-header {
+    padding: 5px 8px;
+  }
+  .search-left {
+    flex: 0 0 auto;
+  }.search-right {
+    flex: 0 0 auto;
+    margin-left: 10px; /* Espace réduit à droite */
+  }  .search-center {
+    margin-top: 5px;
+  }
+
+  .search-bar {
+    height: 36px; /* Barre plus petite */
+    font-size: 13px;
+    padding: 0 60px 0 15px; /* Padding réduit */
+  }
+  
+  .search-icons {
+    right: 8px;
+    gap: 8px;
+  }
+  .search-icons img {
+    width: 16px;
+    height: 16px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+
+  .item-image {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .item-link {
+    font-size: 16px;
+  }
+  
+  .item-description {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  
+  .certification-badge span {
+    font-size: 11px;
+  }
+  
+  .certification-badge img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .qr-code {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .footer-center {
+    font-size: 13px;
+  }
+  
+  .footer-bottom {
+    padding: 0 10px;
+  }
+  
+  .footer-left a,
+  .footer-right a {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
+
+/* === OPTIMISATIONS DE PERFORMANCE === */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* === OPTIMISATIONS POUR LES ÉCRANS À HAUTE DENSITÉ === */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .search-bar {
+    border-width: 0.5px;
+  }
+  
+  .item-image, 
+  .certification-badge img,
+  .qr-code {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 }
