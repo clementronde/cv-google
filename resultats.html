@@ -297,7 +297,217 @@
 
   <script src="script.js"></script>
   <script src="responsive-script.js"></script>
+  
   <script>
+
+// Fonction pour gérer la traduction du site
+document.addEventListener('DOMContentLoaded', function() {
+  // Sélectionner les drapeaux de langue
+  const flagLinks = document.querySelectorAll('.language-flags a');
+  
+  // Dictionnaire de traduction
+  const translations = {
+    'fr': {
+      // En-tête
+      'search-input': 'Meilleur alternant marketing de 2025',
+      
+      // Compétences
+      'data-customer-experience': 'Data Customer Experience',
+      'data-customer-description': 'Analyse de données, visualisation, CRM, parcours client, UX/UI design, analytics, automatisation, personnalisation, segmentation client, optimisation de conversion.',
+      'webmarketing': 'WebMarketing',
+      'webmarketing-description': 'SEO, SEM, publicité en ligne, stratégie de contenu, email marketing, marketing d\'affiliation, analytics web, médias sociaux, automatisation marketing.',
+      'design-communication': 'Design Communication',
+      'design-communication-description': 'Design graphique, identité visuelle, communication digitale, storytelling, gestion de projet, production de contenu, stratégies de marque.',
+      
+      // Profil
+      'profile-description': 'Si vous êtes tombés ici, c\'est que mon SEO est optimal.<br>Je suis à la recherche d\'une alternance dans le domaine du marketing digital.<br>Si vous êtes intéressés par ma fiche google, je reste joignable pour répondre à vos questions.',
+      'age': 'Âge :',
+      'telephone': 'Téléphone :',
+      'mail': 'Mail :',
+      'address': 'Adresse :',
+      'available-button': 'Disponible à partir de septembre 2025',
+      'certifications': 'Certifications :',
+      'voir-plus': 'voir + de compétences',
+      'translate-text': 'Traduire cette page :',
+      'view-projects': 'Voir mes projets',
+      
+      // Footer
+      'formation': 'Formation',
+      'experiences': 'Expériences',
+      'projets': 'Projets',
+      'availability-footer': '🎓 Disponible pour une alternance en marketing digital',
+      'contact': 'Contact'
+    },
+    'en': {
+      // En-tête
+      'search-input': 'Best marketing intern of 2025',
+      
+      // Compétences
+      'data-customer-experience': 'Data Customer Experience',
+      'data-customer-description': 'Data analysis, visualization, CRM, customer journey, UX/UI design, analytics, automation, personalization, customer segmentation, conversion optimization.',
+      'webmarketing': 'Digital Marketing',
+      'webmarketing-description': 'SEO, SEM, online advertising, content strategy, email marketing, affiliate marketing, web analytics, social media, marketing automation.',
+      'design-communication': 'Design & Communication',
+      'design-communication-description': 'Graphic design, visual identity, digital communication, storytelling, project management, content production, brand strategies.',
+      
+      // Profil
+      'profile-description': 'If you landed here, it means my SEO is optimal.<br>I am looking for an internship in digital marketing.<br>If you are interested in my Google profile, I remain available to answer your questions.',
+      'age': 'Age:',
+      'telephone': 'Phone:',
+      'mail': 'Email:',
+      'address': 'Address:',
+      'available-button': 'Available from September 2025',
+      'certifications': 'Certifications:',
+      'voir-plus': 'see more skills',
+      'translate-text': 'Translate this page:',
+      'view-projects': 'View my projects',
+      
+      // Footer
+      'formation': 'Education',
+      'experiences': 'Experience',
+      'projets': 'Projects',
+      'availability-footer': '🎓 Available for a digital marketing internship',
+      'contact': 'Contact'
+    },
+    'es': {
+      // En-tête
+      'search-input': 'Mejor pasante de marketing de 2025',
+      
+      // Compétences
+      'data-customer-experience': 'Experiencia de Datos del Cliente',
+      'data-customer-description': 'Análisis de datos, visualización, CRM, recorrido del cliente, diseño UX/UI, analítica, automatización, personalización, segmentación de clientes, optimización de conversión.',
+      'webmarketing': 'Marketing Digital',
+      'webmarketing-description': 'SEO, SEM, publicidad en línea, estrategia de contenido, email marketing, marketing de afiliación, analítica web, redes sociales, automatización de marketing.',
+      'design-communication': 'Diseño y Comunicación',
+      'design-communication-description': 'Diseño gráfico, identidad visual, comunicación digital, storytelling, gestión de proyectos, producción de contenidos, estrategias de marca.',
+      
+      // Profil
+      'profile-description': 'Si has llegado hasta aquí, significa que mi SEO es óptimo.<br>Estoy buscando una pasantía en marketing digital.<br>Si estás interesado en mi perfil de Google, estoy disponible para responder a tus preguntas.',
+      'age': 'Edad:',
+      'telephone': 'Teléfono:',
+      'mail': 'Correo:',
+      'address': 'Dirección:',
+      'available-button': 'Disponible a partir de septiembre 2025',
+      'certifications': 'Certificaciones:',
+      'voir-plus': 'ver más habilidades',
+      'translate-text': 'Traducir esta página:',
+      'view-projects': 'Ver mis proyectos',
+      
+      // Footer
+      'formation': 'Formación',
+      'experiences': 'Experiencias',
+      'projets': 'Proyectos',
+      'availability-footer': '🎓 Disponible para una pasantía en marketing digital',
+      'contact': 'Contacto'
+    }
+  };
+
+  // Fonction pour traduire la page
+  function translatePage(language) {
+    // Stocker la langue sélectionnée dans localStorage
+    localStorage.setItem('preferred_language', language);
+    
+    const trans = translations[language];
+    if (!trans) return;
+    
+    // Traduire la barre de recherche
+    document.getElementById('search-input').value = trans['search-input'];
+    
+    // Traduire les compétences
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach((item, index) => {
+      const questionSpan = item.querySelector('.faq-question span');
+      const answerParagraph = item.querySelector('.faq-answer p');
+      
+      if (index === 0 && questionSpan) {
+        questionSpan.textContent = trans['data-customer-experience'];
+        if (answerParagraph) answerParagraph.textContent = trans['data-customer-description'];
+      }
+      else if (index === 1 && questionSpan) {
+        questionSpan.textContent = trans['webmarketing'];
+        if (answerParagraph) answerParagraph.textContent = trans['webmarketing-description'];
+      }
+      else if (index === 2 && questionSpan) {
+        questionSpan.textContent = trans['design-communication'];
+        if (answerParagraph) answerParagraph.textContent = trans['design-communication-description'];
+      }
+    });
+    
+    // Traduire la description du profil
+    const description = document.querySelector('.profile-card .description');
+    if (description) description.innerHTML = trans['profile-description'];
+    
+    // Traduire les informations de contact
+    const contactInfos = document.querySelectorAll('.contact p strong');
+    contactInfos.forEach(info => {
+      if (info.textContent.includes('Âge')) info.textContent = trans['age'];
+      else if (info.textContent.includes('Téléphone')) info.textContent = trans['telephone'];
+      else if (info.textContent.includes('Mail')) info.textContent = trans['mail'];
+      else if (info.textContent.includes('Adresse')) info.textContent = trans['address'];
+    });
+    
+    // Traduire le bouton de disponibilité
+    const availabilityButton = document.querySelector('.availability-button button');
+    if (availabilityButton) availabilityButton.textContent = trans['available-button'];
+    
+    // Traduire les certifications
+    const certificationTitle = document.querySelector('.certifications h4');
+    if (certificationTitle) certificationTitle.textContent = trans['certifications'];
+    
+    // Traduire le lien "voir plus"
+    const voirPlus = document.querySelector('.voir-plus');
+    if (voirPlus) voirPlus.textContent = trans['voir-plus'];
+    
+    // Traduire le texte de traduction
+    const translateText = document.querySelector('.translation-links p');
+    if (translateText) translateText.textContent = trans['translate-text'];
+    
+    // Traduire le bouton de projets
+    const viewProjects = document.querySelector('.view-projects-btn');
+    if (viewProjects) viewProjects.textContent = trans['view-projects'];
+    
+    // Traduire le footer
+    const footerLinks = document.querySelectorAll('.footer-bottom a');
+    footerLinks.forEach(link => {
+      if (link.textContent.includes('Formation')) link.textContent = trans['formation'];
+      else if (link.textContent.includes('Expériences')) link.textContent = trans['experiences'];
+      else if (link.textContent.includes('Projets')) link.textContent = trans['projets'];
+      else if (link.textContent.includes('Contact')) link.textContent = trans['contact'];
+    });
+    
+    // Traduire le message de disponibilité dans le footer
+    const footerAvailability = document.querySelector('.footer-center span');
+    if (footerAvailability) footerAvailability.textContent = trans['availability-footer'];
+  }
+  
+  // Ajouter les événements de clic aux drapeaux
+  flagLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const langImg = this.querySelector('img');
+      const langSrc = langImg.src;
+      
+      // Déterminer la langue en fonction de l'image du drapeau
+      let language = 'fr'; // Par défaut
+      if (langSrc.includes('en-flag')) {
+        language = 'en';
+      } else if (langSrc.includes('es-flag')) {
+        language = 'es';
+      }
+      
+      // Appliquer la traduction
+      translatePage(language);
+    });
+  });
+  
+  // Vérifier si une langue préférée est stockée
+  const savedLanguage = localStorage.getItem('preferred_language');
+  if (savedLanguage) {
+    translatePage(savedLanguage);
+  }
+});
+
+
     // Script pour gérer les onglets
     document.querySelectorAll('.search-tabs li').forEach(tab => {
       tab.addEventListener('click', () => {
