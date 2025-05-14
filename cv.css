@@ -23,8 +23,14 @@
   }
   
   img {
-    max-width: 100%;
-  }
+  max-width: 100%;
+  height: auto;
+}
+.certification-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
   
   /* ==== HEADER ET NAVIGATION ==== */
   .cv-header {
@@ -147,13 +153,11 @@
   }
   
   .profile-photo img {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #fff;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-  }
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
   
   .profile-info h1 {
     color: #202124;
@@ -201,10 +205,11 @@
     font-size: 14px;
   }
   
-  .badge img {
-    width: 24px;
-    height: 24px;
-  }
+ .badge img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
   
   .profile-availability {
     margin-top: 20px;
@@ -296,16 +301,14 @@
     margin-bottom: 15px;
   }
   
-  .company-logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px;
-    background-color: #f1f3f4;
-    padding: 5px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
+ /* Ajustement pour les logos d'entreprise et d'école */
+.company-logo,
+.school-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-right: 10px;
+}
   
   .education-title h3 {
     font-size: 18px;
@@ -351,11 +354,10 @@
   }
   
   .project-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-  }
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
   
   .project-card:hover .project-image img {
     transform: scale(1.05);
@@ -513,10 +515,9 @@
   }
   
   .social-link img {
-    width: 24px;
-    height: 24px;
-    opacity: 0.7;
-  }
+  width: 20px;
+  height: 20px;
+}
   
   /* ==== FOOTER ==== */
   .cv-footer {
@@ -627,4 +628,73 @@
       justify-content: center;
       flex-wrap: wrap;
     }
+   .certification-logo {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .profile-photo img {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .certification-card {
+    display: flex;
+    align-items: center;
+  }
+  
+  .certification-content {
+    padding-left: 10px;
+  }
+}
+
+/* Ajustement pour la carte de certification */
+.certification-card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #e0e0e0;
+}
+
+.certification-content {
+  flex: 1;
+  margin-left: 15px;
+}
+
+.certification-content h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.certification-content p {
+  font-size: 14px;
+  color: #5f6368;
+  margin-bottom: 5px;
+}
+
+.certification-label {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: #e8f0fe;
+  color: #1a73e8;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Optimisation pour le grid des certifications */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  } 
   }

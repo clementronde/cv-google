@@ -1336,73 +1336,343 @@ input:focus, textarea:focus, select:focus {
   line-height: 1.6;
 }
 
-/* Styles pour la section process */
+/* Styles améliorés pour la section "Comment je travaille" */
+
 .process-section {
-  padding: 100px 0;
-  background-color: #fff;
-}
-
-.process-steps {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  margin-top: 50px;
+  padding: 120px 0;
+  background-color: #fafbfd;
   position: relative;
+  overflow: hidden;
 }
 
-.process-steps::before {
+/* Arrière-plan subtil */
+.process-section::before {
   content: '';
   position: absolute;
-  top: 30px;
-  bottom: 30px;
-  left: 30px;
-  width: 2px;
-  background-color: var(--primary-color);
-  opacity: 0.2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 20% 50%, rgba(26, 115, 232, 0.03) 0%, rgba(255, 255, 255, 0) 50%);
+  z-index: 1;
 }
 
-.process-step {
+.process-content {
+  position: relative;
+  z-index: 2;
+}
+
+.process-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.process-title h2 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  position: relative;
+  display: inline-block;
+}
+
+.process-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+.process-title p {
+  font-size: 18px;
+  color: var(--dark-gray);
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+/* Timeline moderne */
+.process-timeline {
   display: flex;
-  gap: 30px;
+  flex-direction: column;
+  max-width: 1100px;
+  margin: 0 auto;
   position: relative;
 }
 
-.step-number {
-  width: 60px;
-  height: 60px;
-  background-color: var(--primary-color);
-  color: #fff;
+/* Ligne verticale de la timeline */
+.process-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, 
+    rgba(26, 115, 232, 0.1) 0%, 
+    rgba(26, 115, 232, 0.7) 20%,
+    rgba(26, 115, 232, 0.7) 80%,
+    rgba(26, 115, 232, 0.1) 100%);
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Étapes individuelles */
+.timeline-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Alternance gauche/droite */
+.timeline-item:nth-child(odd) {
+  justify-content: flex-start;
+}
+
+.timeline-item:nth-child(even) {
+  justify-content: flex-end;
+}
+
+/* Badge d'étape numéroté */
+.timeline-badge {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--primary-color), #5090ec);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
+  font-size: 26px;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(26, 115, 232, 0.3);
+  z-index: 3;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Contenu de l'étape */
+.timeline-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+  width: calc(50% - 50px);
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Flèche pointant vers le badge */
+.timeline-content::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: white;
+  transform: translateY(-50%) rotate(45deg);
+  z-index: -1;
+}
+
+.timeline-item:nth-child(odd) .timeline-content::after {
+  right: -10px;
+}
+
+.timeline-item:nth-child(even) .timeline-content::after {
+  left: -10px;
+}
+
+/* Contenu textuel */
+.timeline-content h3 {
+  color: var(--primary-color);
   font-size: 24px;
-  font-weight: 600;
-  z-index: 2;
-  flex-shrink: 0;
-}
-
-.step-content {
-  flex: 1;
-}
-
-.step-content h3 {
-  font-size: 22px;
   margin-bottom: 15px;
-  color: var(--text-color);
+  display: flex;
+  align-items: center;
 }
 
-.step-content p {
+.timeline-content p {
   color: var(--dark-gray);
   margin-bottom: 15px;
   line-height: 1.6;
 }
 
-.step-deliverables {
-  background-color: #f8f9fa;
+/* Zone des livrables */
+.deliverables {
+  background-color: rgba(26, 115, 232, 0.05);
   padding: 15px;
-  border-radius: var(--border-radius);
-  font-size: 14px;
+  border-radius: 8px;
+  margin-top: 15px;
+  border-left: 3px solid var(--primary-color);
+}
+
+.deliverables span {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+
+/* Version responsive */
+@media (max-width: 992px) {
+  .process-timeline::before {
+    left: 40px;
+  }
+  
+  .timeline-item {
+    justify-content: flex-start !important;
+    flex-direction: row-reverse;
+    margin-left: 80px;
+  }
+  
+  .timeline-badge {
+    left: 40px;
+    transform: translateX(-50%);
+  }
+  
+  .timeline-content {
+    width: calc(100% - 60px);
+  }
+  
+  .timeline-content::after {
+    left: -10px !important;
+    right: auto !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .process-title h2 {
+    font-size: 30px;
+  }
+  
+  .timeline-badge {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .timeline-content {
+    padding: 20px;
+  }
+  
+  .timeline-content h3 {
+    font-size: 20px;
+  }
+}
+
+/* Styles supplémentaires pour l'animation de la timeline */
+
+/* État initial des éléments de la timeline (invisible) */
+.timeline-item-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Animation d'apparition */
+.timeline-item-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Effet au survol */
+.timeline-content-hover {
+  background: linear-gradient(to bottom right, #ffffff, #f8fbff);
+  transform: translateY(-8px) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+  border-left: 3px solid var(--primary-color);
+}
+
+/* Animation du badge */
+@keyframes pulse-badge {
+  0% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(26, 115, 232, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0); }
+}
+
+.timeline-badge {
+  animation: pulse-badge 2s infinite;
+}
+
+/* Animation de la ligne de la timeline */
+@keyframes growLine {
+  from { height: 0; }
+  to { height: 100%; }
+}
+
+.process-timeline::before {
+  animation: growLine 1.5s ease-out forwards;
+  height: 0;
+  background: linear-gradient(to bottom, 
+    var(--primary-color) 0%, 
+    var(--primary-color) 100%);
+}
+
+/* Style pour la version adaptative */
+@media (prefers-reduced-motion: reduce) {
+  .timeline-item-hidden,
+  .timeline-item-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .timeline-badge {
+    animation: none !important;
+  }
+  
+  .process-timeline::before {
+    animation: none !important;
+    height: 100% !important;
+  }
+}
+
+/* Variante de couleur pour chaque étape */
+.timeline-item:nth-child(1) .timeline-badge {
+  background: linear-gradient(135deg, #4285F4, #5090ec);
+}
+
+.timeline-item:nth-child(2) .timeline-badge {
+  background: linear-gradient(135deg, #34A853, #40c463);
+}
+
+.timeline-item:nth-child(3) .timeline-badge {
+  background: linear-gradient(135deg, #FBBC04, #ffc93e);
+}
+
+.timeline-item:nth-child(4) .timeline-badge {
+  background: linear-gradient(135deg, #EA4335, #ff5c52);
+}
+
+/* Légère rotation des éléments pour un effet dynamique */
+.timeline-item:nth-child(odd) .timeline-content {
+  transform: rotate(-1deg);
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  transform: rotate(1deg);
+}
+
+/* Revenir à l'orientation normale au survol */
+.timeline-item:nth-child(odd) .timeline-content:hover,
+.timeline-item:nth-child(even) .timeline-content:hover {
+  transform: rotate(0) translateY(-8px);
 }
 
 /* Styles pour les expertise-features */
@@ -2230,4 +2500,6 @@ body.cursor-active .cursor-outline {
 .results-section .cursor-dot {
   background-color: white;
 }
+
+/* Styles pour les formes graphiques flottantes */
 

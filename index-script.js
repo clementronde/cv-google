@@ -156,7 +156,7 @@ function setupButtonActions() {
     luckyButton.addEventListener('click', function() {
       document.body.classList.add('page-transitioning');
       setTimeout(() => {
-        window.location.href = 'cv.html';
+        window.location.href = 'resultats.html';
       }, 300);
     });
   }
