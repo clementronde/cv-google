@@ -3,9 +3,10 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   // Vérifier si nous sommes sur la page d'index
-  const isIndexPage = window.location.pathname === '/' || 
-                      window.location.pathname.includes('index.html') || 
-                      window.location.pathname === '/index';
+  const isIndexPage =
+  window.location.pathname.endsWith('/') ||
+  window.location.pathname.endsWith('index.html');
+
   
   if (isIndexPage) {
     // Configuration
