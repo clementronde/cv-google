@@ -958,7 +958,6 @@ ul {
 .social-icon img {
   width: 20px;
   height: 20px;
-  filter: invert(1);
 }
 
 .footer-bottom {
@@ -2253,7 +2252,6 @@ input:focus, textarea:focus, select:focus {
 .linkedin-button img {
   width: 18px;
   height: 18px;
-  filter: brightness(0) invert(1);
 }
 
 .linkedin-button:hover {
