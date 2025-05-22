@@ -8,7 +8,47 @@ document.addEventListener('DOMContentLoaded', function() {
   // Ajouter la classe pour les animations
   document.body.classList.add('page-loaded');
 });
-
+//** Configuration des actions des boutons */
+function setupButtonActions() {
+  const downloadCvButton = document.getElementById('download-cv');
+  if (downloadCvButton) {
+    downloadCvButton.addEventListener('click', function(e) {
+      e.preventDefault(); // Empêcher le comportement par défaut
+      
+      // Envoi d'un event Google Analytics
+      if (typeof gtag === 'function') {
+        gtag('event', 'telechargement_cv', {
+          'event_category': 'Candidature',
+          'event_label': 'CV PDF',
+          'value': 1
+        });
+      }
+      
+      // Vérifier d'abord si le fichier existe
+      const cvPath = 'assets/Images/CV_Clement_Rondepierre_Alternance_M2.pdf';
+      
+      // Méthode 1: Téléchargement direct (la plus simple)
+      const link = document.createElement('a');
+      link.href = cvPath;
+      link.download = 'CV_Clement_Rondepierre.pdf';
+      link.target = '_blank'; // Ouvrir dans un nouvel onglet si le téléchargement échoue
+      
+      // Ajouter au DOM temporairement
+      document.body.appendChild(link);
+      
+      // Déclencher le téléchargement
+      link.click();
+      
+      // Nettoyer
+      document.body.removeChild(link);
+      
+      // Debug: afficher un message dans la console
+      console.log('Tentative de téléchargement du CV depuis:', cvPath);
+    });
+  } else {
+    console.error('Bouton de téléchargement du CV non trouvé');
+  }
+}
 /**
  * Fonction pour gérer l'effet de machine à écrire avec multiples phrases
  */
@@ -146,26 +186,4 @@ function initTypewriterEffect() {
   }
 }
 
-/**
- * Configuration des boutons
- */
- const downloadCvButton = document.getElementById('download-cv');
-if (downloadCvButton) {
-  downloadCvButton.addEventListener('click', function() {
-    // Envoi d'un event Google Analytics
-    if (typeof gtag === 'function') {
-      gtag('event', 'telechargement_cv', {
-        'event_category': 'Candidature',
-        'event_label': 'CV PDF',
-        'value': 1
-      });
-    }
-    // Téléchargement du PDF (adapte le chemin si besoin)
-    const link = document.createElement('a');
-    link.href = 'assets/Images/CV_Clement_Rondepierre_Alternance_M2.pdf';
-    link.download = 'CV_Clement_Rondepierre.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  });
-}
+
