@@ -149,7 +149,6 @@ function initTypewriterEffect() {
 /**
  * Configuration des boutons
  */
-function setupButtonActions() {
  const downloadCvButton = document.getElementById('download-cv');
 if (downloadCvButton) {
   downloadCvButton.addEventListener('click', function() {
@@ -169,5 +168,4 @@ if (downloadCvButton) {
     link.click();
     document.body.removeChild(link);
   });
-}
 }
