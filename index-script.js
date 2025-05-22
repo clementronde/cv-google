@@ -150,14 +150,24 @@ function initTypewriterEffect() {
  * Configuration des boutons
  */
 function setupButtonActions() {
-  // Bouton "J'ai de la chance"
-  const luckyButton = document.getElementById('lucky-button');
-  if (luckyButton) {
-    luckyButton.addEventListener('click', function() {
-      document.body.classList.add('page-transitioning');
-      setTimeout(() => {
-        window.location.href = 'resultats.html';
-      }, 300);
-    });
-  }
+ const downloadCvButton = document.getElementById('download-cv');
+if (downloadCvButton) {
+  downloadCvButton.addEventListener('click', function() {
+    // Envoi d'un event Google Analytics
+    if (typeof gtag === 'function') {
+      gtag('event', 'telechargement_cv', {
+        'event_category': 'Candidature',
+        'event_label': 'CV PDF',
+        'value': 1
+      });
+    }
+    // Téléchargement du PDF (adapte le chemin si besoin)
+    const link = document.createElement('a');
+    link.href = 'assets/Images/CV_Clement_Rondepierre_Alternance_M2.pdf';
+    link.download = 'CV_Clement_Rondepierre.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+}
 }
